@@ -1,0 +1,7 @@
+<nav>
+	{% for endpoint in site.data.navigation %}
+		<a href="{{ endpoint.link }}">
+			{{ endpoint.name }}
+		</a>
+	{% endfor %}
+</nav>
