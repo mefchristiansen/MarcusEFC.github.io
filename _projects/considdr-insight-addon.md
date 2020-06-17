@@ -1,3 +1,0 @@
----
-name: Considdr Insight Addon
----

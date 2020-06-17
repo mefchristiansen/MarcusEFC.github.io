@@ -1,0 +1,11 @@
+html, body { background-color: white; }
+
+body { margin: 0 auto; width: 95%; max-width: 45em; color: #000000; font-family: "Source Sans Pro", Helvetica, Arial, sans-serif; }
+
+h1 { color: #464866; }
+
+a:link { color: #2E9CCA; }
+
+a:visited { color: #29648A; }
+
+/*# sourceMappingURL=main.css.map */
