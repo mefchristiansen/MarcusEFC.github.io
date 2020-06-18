@@ -9,10 +9,49 @@
         padding-inline-start: 0
 
         .project-listing
-            @include icon-forward
-
             display: block
             list-style: none
+            margin: 1.5em 0em
 
-            a
-                text-decoration: none
+            .project-listing-header
+                margin-bottom: 1em
+
+                a
+                    @include icon-forward
+                    text-decoration: none
+
+                    h3
+                        display: inline-block
+                        margin: 0
+
+                    i
+                        margin-left: 10px
+
+                .project-tags
+                    ul
+                        padding: 0
+                        margin: 0
+
+                        li
+                            font-size: 0.75em
+                            list-style: none
+                            display: inline-block
+
+                            &:first-child
+                                margin-left: 0
+
+                            &:after
+                                margin: 0.5em
+                                content: "•"
+
+                            &:last-child:after
+                                content: none
+
+            p
+
+    a
+        @include icon-forward
+        text-decoration: none
+
+        i
+            margin-left: 10px

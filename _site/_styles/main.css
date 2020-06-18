@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html, body { background-color: white; }
 
 body { margin: 0 auto; width: 95%; max-width: 45em; color: #163833; font-family: "Source Sans Pro", sans-serif; }
@@ -20,7 +21,7 @@ a:visited { color: #29648A; }
 
 .header .navigation ul li { list-style: none; display: inline-block; }
 
-.header .navigation ul li a { font-size: 1.2em; font-weight: 700; margin: 0.75em; text-decoration: none; }
+.header .navigation ul li a { font-size: 1.2em; font-weight: 700; text-decoration: none; }
 
 .header .navigation ul li a:hover { color: #2E9CCA; }
 
@@ -28,7 +29,7 @@ a:visited { color: #29648A; }
 
 .header .navigation ul li:first-child a { margin-left: 0; }
 
-.header .navigation ul li:after { content: " \00b7"; }
+.header .navigation ul li:after { margin: 0.75em; content: "•"; }
 
 .header .navigation ul li:last-child:after { content: none; }
 
