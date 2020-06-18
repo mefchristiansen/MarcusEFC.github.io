@@ -1,0 +1,15 @@
+<section class="header">
+	<img class="logo" src="{{'/assets/images/logo.png'}}">
+
+	<div class="navigation">
+		<ul>
+			{% for endpoint in site.data.navigation %}
+				<li>
+					<a href="{{ endpoint.link }}" {% if page.url == endpoint.link %}class="active-link"{% endif %}>
+						{{ endpoint.name }}
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
