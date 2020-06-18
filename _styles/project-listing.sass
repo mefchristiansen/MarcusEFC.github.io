@@ -2,7 +2,7 @@
 ---
 
 @import "colors"
-@import "icon-forward"
+@import "hover/icon-forward"
 
 .projects
     .project-listings
@@ -10,4 +10,9 @@
 
         .project-listing
             @include icon-forward
+
+            display: block
             list-style: none
+
+            a
+                text-decoration: none
