@@ -2,6 +2,8 @@
 ---
   
 @import "colors"
+@import "grow"
+@import "icon-forward"
 
 $page-width: 45em
 $base-font-family: "Source Sans Pro", sans-serif
@@ -81,17 +83,13 @@ a:visited
     margin: 0
 
     li
+      @include grow
+
       display: inline-block
       margin: 1em .5em
       width: 1.75em
       height: 1.75em
       position: relative
-      box-shadow: 0 0 2px rgba(0, 0, 0, 0)
-      transition-duration: 0.3s
-      transition-property: transform
-
-      &:hover
-        transform: scale(1.05)
 
       a
         fill: $font-color

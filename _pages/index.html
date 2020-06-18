@@ -3,18 +3,21 @@ layout: default
 title: Home
 ---
 
-<!-- <link rel="stylesheet" href="/styles/project-listing.css"/> -->
+<link rel="stylesheet" href="/_styles/project-listing.css"/>
 
 
-<div class="intro">
+<section class="intro">
 
-</div>
-<div class="projects">
-    <h2>My Projects</h2>
+</section>
 
-    <ul>
-        {% for project in site.projects reversed limit: 3 %}
-            {% include project-listing.html %}
-        {% endfor %}
-    </ul>
-</div>
+<section class="projects">
+    <div class="section-title">My Projects</div>
+
+    <div class="section-content">
+        <ul class="project-listings">
+            {% for project in site.projects reversed limit: 3 %}
+                {% include project-listing.html %}
+            {% endfor %}
+        </ul>
+    </div>
+</section>

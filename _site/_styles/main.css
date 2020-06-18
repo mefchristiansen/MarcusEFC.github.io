@@ -1,3 +1,4 @@
+/* Icon Forward */
 html, body { background-color: white; }
 
 body { margin: 0 auto; width: 95%; max-width: 45em; color: #163833; font-family: "Source Sans Pro", sans-serif; }
@@ -36,9 +37,9 @@ a:visited { color: #29648A; }
 
 .footer ul { padding: 0; margin: 0; }
 
-.footer ul li { display: inline-block; margin: 1em .5em; width: 1.75em; height: 1.75em; position: relative; box-shadow: 0 0 2px rgba(0, 0, 0, 0); transition-duration: 0.3s; transition-property: transform; }
+.footer ul li { display: inline-block; vertical-align: middle; -webkit-transform: perspective(1px) translateZ(0); transform: perspective(1px) translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0); -webkit-transition-duration: 0.3s; transition-duration: 0.3s; -webkit-transition-property: transform; transition-property: transform; display: inline-block; margin: 1em .5em; width: 1.75em; height: 1.75em; position: relative; }
 
-.footer ul li:hover { transform: scale(1.05); }
+.footer ul li:hover, .footer ul li:focus, .footer ul li:active { -webkit-transform: scale(1.1); transform: scale(1.1); }
 
 .footer ul li a { fill: #163833; }
 
