@@ -1,0 +1,20 @@
+---
+layout: default
+title: Home
+---
+
+<!-- <link rel="stylesheet" href="/styles/project-listing.css"/> -->
+
+
+<div class="intro">
+
+</div>
+<div class="projects">
+    <h2>My Projects</h2>
+
+    <ul>
+        {% for project in site.projects reversed limit: 3 %}
+            {% include project-listing.html %}
+        {% endfor %}
+    </ul>
+</div>
