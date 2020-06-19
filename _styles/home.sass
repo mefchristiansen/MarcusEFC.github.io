@@ -1,0 +1,76 @@
+---
+---
+
+@import "colors"
+@import "hover/icon-forward"
+
+section
+    .section-title
+        font-size: 1.25em
+        font-weight: bold
+        margin-bottom: 0.5em
+    
+    .section-content
+
+
+.projects
+    .project-listings
+        padding-inline-start: 0
+
+        .project-listing
+            display: block
+            list-style: none
+            margin-top: 1em
+
+            .project-listing-header
+                margin-bottom: 1em
+
+                .github-link
+                    float: right
+                    width: 1.25em
+                    height: 1.25em
+                    fill: #c7c6c6
+                    transition: 0.5s
+
+                    &:hover
+                        fill: $font-color
+
+                .title
+                    @include icon-forward
+                    text-decoration: none
+
+                    h3
+                        display: inline-block
+                        margin: 0
+
+                    i
+                        margin-left: 10px
+
+                .project-tags
+                    ul
+                        padding: 0
+                        margin: 0
+
+                        li
+                            font-size: 0.75em
+                            list-style: none
+                            display: inline-block
+
+                            &:first-child
+                                margin-left: 0
+
+                            &:after
+                                margin: 0.5em
+                                content: "•"
+
+                            &:last-child:after
+                                content: none
+
+            p
+
+    a
+        @include icon-forward
+        text-decoration: none
+
+        i
+            margin-left: 10px

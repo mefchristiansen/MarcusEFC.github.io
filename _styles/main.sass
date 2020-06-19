@@ -4,18 +4,18 @@
 @import "colors"
 @import "hover/grow"
 
-$page-width: 45em
+$main-width: 70em
+$content-width: 45em
 $base-font-family: "Source Sans Pro", sans-serif
 
 html, body
   background-color: white
 
 body
-  margin: 0 auto
-  width: 95%
-  max-width: $page-width
   color: $font-color
   font-family: $base-font-family
+  margin: 0
+  padding: 1em
 
 h1
   color: $secondary-color
@@ -27,55 +27,84 @@ a:visited
   color: $link-color
 
 .center
-  text-align: center
   margin: 0 auto
 
 .header
-  display: flex
-  flex-wrap: wrap
-  justify-content: space-between
-  align-items: center
-  margin: 1em 0em
+  margin-bottom: 1em
+  border-bottom: 1px solid #ededed
 
-  .logo
-    width: 40px
-    height: 40px
+  .inner-wrapper
+    text-align: center
+    max-width: $main-width
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    padding: 1em
 
-  .navigation
-    text-align: right
+    .logo
+      width: 40px
+      height: 40px
 
-    ul
-      padding: 0
-      margin: 0
+    .navigation
+        text-align: right
+        display: flex
+        justify-content: center
+        align-items: center
 
-      li
-        list-style: none
-        display: inline-block
+        ul
+          padding: 0
+          margin: 0
 
-        a
-          font-size: 1.2em
-          font-weight: 700
-          text-decoration: none
+          li
+            list-style: none
+            display: inline-block
 
-          &:hover
-            color: $visited-color
+            a
+              font-size: 1.2em
+              font-weight: 700
+              text-decoration: none
 
-          &.active-link
-            color: $visited-color
+              &:hover
+                color: $visited-color
 
-        &:first-child
-          a
-            margin-left: 0
+              &.active-link
+                color: $visited-color
 
-        &:after
-          margin: 0.75em
-          content: "•"
+            &:first-child
+              a
+                margin-left: 0
 
-        &:last-child:after
-          content: none
+            &:after
+              margin: 0.75em
+              content: "•"
+
+            &:last-child:after
+              content: none
 
 .footer
-  margin-top: 1em
+  padding: 1em 0
+  color: #aaa
+  font-weight: 300
+  position: relative
+  max-width: $content-width
+  text-align: center
+  margin-top: 3em
+
+  border-top: 1px solid #ededed
+
+  &::before
+    display: block
+    content: " "
+    width: 7px
+    height: 7px
+    border: #ededed 1px solid
+    position: absolute
+    top: -5px
+    left: 50%
+    margin-left: -5px
+    background: #FFF
+    box-shadow: #FFF 0 0 0 5px
+    border-radius: 3px
 
   ul
     padding: 0
@@ -91,4 +120,42 @@ a:visited
       position: relative
 
       a
-        fill: $font-color
+        fill: #c7c6c6
+
+        &:hover
+          fill: $font-color
+
+.main
+  max-width: $main-width
+  display: flex
+
+  .sidebar
+    position: absolute
+    height: 100%
+    opacity: 75%
+    transition: 0.3s
+    width: 150px
+
+    .profile
+      position: sticky
+      top: 2em
+
+      .avatar
+        display: block
+        width: auto
+        height: auto
+
+        img
+          padding: 5px
+          border: 1px solid #f2f3f3
+          border-radius: 50%
+          max-width: 100px
+          width: 100%
+    
+    &:hover
+      opacity: 100%
+  
+  .content
+    margin-top: 2em
+    max-width: $content-width
+    

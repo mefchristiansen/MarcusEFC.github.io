@@ -4,11 +4,10 @@ title: Home
 permalink: /
 ---
 
-<link rel="stylesheet" href="/_styles/project-listing.css"/>
-
+<link rel="stylesheet" href="/_styles/home.css"/>
 
 <section class="intro">
-
+    <h2> Hi, I'm Marcus! </h2>
 </section>
 
 <section class="projects">
@@ -16,6 +15,18 @@ permalink: /
 
     <div class="section-content">
         <ul class="project-listings">
+            {% for project in site.projects reversed limit: 3 %}
+                {% include project-listing.html %}
+            {% endfor %}
+            {% for project in site.projects reversed limit: 3 %}
+                {% include project-listing.html %}
+            {% endfor %}
+            {% for project in site.projects reversed limit: 3 %}
+                {% include project-listing.html %}
+            {% endfor %}
+            {% for project in site.projects reversed limit: 3 %}
+                {% include project-listing.html %}
+            {% endfor %}
             {% for project in site.projects reversed limit: 3 %}
                 {% include project-listing.html %}
             {% endfor %}

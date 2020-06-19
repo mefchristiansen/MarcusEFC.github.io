@@ -1,4 +1,4 @@
 ---
 name: Conway's Game of Life
-tags: []
+tags: ["Go", "Ebiten"]
 ---

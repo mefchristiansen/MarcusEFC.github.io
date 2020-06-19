@@ -14,8 +14,12 @@
 	<body>
 		{% include header.html %}
 
-		<section class="content">
-			{{ content }}
+		<section class="main center">
+			{% include sidebar.html %}
+
+			<section class="content center">
+				{{ content }}
+			</section>
 		</section>
 		
 		{% include footer.html %}

@@ -2,7 +2,7 @@
     
 @mixin grow
 	@include hacks()
-	@include prefixed(transition-duration, $mediumDuration)
+	@include prefixed(transition-duration, $slowDuration)
 	@include prefixed(transition-property, transform)
 
 	&:hover,
