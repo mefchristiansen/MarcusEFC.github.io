@@ -4,12 +4,22 @@ title: Projects
 permalink: /projects
 ---
 
-<h1>{{ page.title }}</h1>
+<link rel="stylesheet" href="/_styles/projects.css"/>
+<link rel="stylesheet" href="/_styles/project-listing.css"/>
 
-<ul>
-  {% for project in site.projects %}
-    <li>
-      <h2><a href="{{ project.url }}">{{ project.name }}</a></h2>
-    </li>
+<section class="projects">
+  <h1 class="title">My Projects</h1>
+
+  {% assign postsByYear = site.projects | group_by_exp:"post", "post.date | date: '%Y'" %}
+    {% for year in postsByYear %}
+      <h2 class="year-listing">{{ year.name }}</h2>
+
+      <ul class="project-listings">
+        {% for project in year.items reversed %}
+            {% include project-listing.html %}
+        {% endfor %}
+      </ul>
   {% endfor %}
-</ul>
+
+  
+</section>

@@ -1,47 +1,4 @@
-@charset "UTF-8";
 /* Icon Forward */
-section { margin: 2em 0em; }
-
-section .section-title { font-size: 1.25em; font-weight: bold; margin-bottom: 0.5em; }
-
-.projects .project-listings { padding-inline-start: 0; }
-
-.projects .project-listings .project-listing { display: block; list-style: none; margin-top: 1em; }
-
-.projects .project-listings .project-listing .project-listing-header { margin-bottom: 1em; }
-
-.projects .project-listings .project-listing .project-listing-header .github-link { float: right; width: 1.25em; height: 1.25em; fill: #c7c6c6; transition: 0.5s; }
-
-.projects .project-listings .project-listing .project-listing-header .github-link:hover { fill: #163833; }
-
-.projects .project-listings .project-listing .project-listing-header .title { display: inline-block; vertical-align: middle; -webkit-transform: perspective(1px) translateZ(0); transform: perspective(1px) translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0); -webkit-transition-duration: 0.1s; transition-duration: 0.1s; text-decoration: none; }
-
-.projects .project-listings .project-listing .project-listing-header .title .hvr-icon { -webkit-transform: translateZ(0); transform: translateZ(0); -webkit-transition-duration: 0.1s; transition-duration: 0.1s; -webkit-transition-property: transform; transition-property: transform; -webkit-transition-timing-function: ease-out; transition-timing-function: ease-out; }
-
-.projects .project-listings .project-listing .project-listing-header .title:hover .hvr-icon, .projects .project-listings .project-listing .project-listing-header .title:focus .hvr-icon, .projects .project-listings .project-listing .project-listing-header .title:active .hvr-icon { -webkit-transform: translateX(4px); transform: translateX(4px); }
-
-.projects .project-listings .project-listing .project-listing-header .title h3 { display: inline-block; margin: 0; }
-
-.projects .project-listings .project-listing .project-listing-header .title i { margin-left: 10px; }
-
-.projects .project-listings .project-listing .project-listing-header .project-tags ul { padding: 0; margin: 0; }
-
-.projects .project-listings .project-listing .project-listing-header .project-tags ul li { font-size: 0.75em; list-style: none; display: inline-block; }
-
-.projects .project-listings .project-listing .project-listing-header .project-tags ul li:first-child { margin-left: 0; }
-
-.projects .project-listings .project-listing .project-listing-header .project-tags ul li:after { margin: 0.5em; content: "•"; }
-
-.projects .project-listings .project-listing .project-listing-header .project-tags ul li:last-child:after { content: none; }
-
-.projects a { display: inline-block; vertical-align: middle; -webkit-transform: perspective(1px) translateZ(0); transform: perspective(1px) translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0); -webkit-transition-duration: 0.1s; transition-duration: 0.1s; text-decoration: none; }
-
-.projects a .hvr-icon { -webkit-transform: translateZ(0); transform: translateZ(0); -webkit-transition-duration: 0.1s; transition-duration: 0.1s; -webkit-transition-property: transform; transition-property: transform; -webkit-transition-timing-function: ease-out; transition-timing-function: ease-out; }
-
-.projects a:hover .hvr-icon, .projects a:focus .hvr-icon, .projects a:active .hvr-icon { -webkit-transform: translateX(4px); transform: translateX(4px); }
-
-.projects a i { margin-left: 10px; }
-
 .intro h2 { font-weight: 100; }
 
 /*# sourceMappingURL=home.css.map */

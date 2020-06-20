@@ -18,7 +18,7 @@ body
   padding: 1em
 
 h1
-  color: $secondary-color
+  font-size: 2em
 
 a:link
   color: $link-color
@@ -36,7 +36,6 @@ a:visited
   .inner-wrapper
     @extend .center
     text-align: center
-    max-width: $main-width
     display: flex
     flex-wrap: wrap
     justify-content: space-between
@@ -89,8 +88,9 @@ a:visited
   font-weight: 300
   position: relative
   max-width: $content-width
+  width: 100%
   text-align: center
-  margin-top: 3em
+  margin-top: 2em
 
   border-top: 1px solid #ededed
 
@@ -130,15 +130,21 @@ a:visited
 .main
   @extend .center
   max-width: $main-width
+  width: 100%
   display: inline
 
   .sidebar
     @extend .center
     max-width: $content-width
-    opacity: 75%
+    width: 100%
 
     .profile
       vertical-align: top
+      transition: 0.3s
+      opacity: 75%
+
+      &:hover
+        opacity: 100%
 
       .avatar
         display: inline-block
@@ -164,14 +170,15 @@ a:visited
       .quote
         display: none
 
-  @media screen and (min-width: 70em)
+        
+
+  @media screen and (min-width: 65em)
     display: flex
 
     .sidebar
-      width: calc(200px - 1em)
+      width: 150px
       position: absolute
       height: 100%
-      transition: 0.3s
 
       .profile
         position: sticky
@@ -187,11 +194,17 @@ a:visited
         .quote
           margin-top: 1em
           display: block
-    
-    &:hover
-      opacity: 100%
   
   .content
     @extend .center
     max-width: $content-width
+    width: 100%
+
+    section
+      margin: 2em 0em
+
+      .section-title
+          font-size: 1.25em
+          font-weight: bold
+          margin-bottom: 1em
     
