@@ -59,11 +59,11 @@ a:visited { color: #29648A; }
 
 .main .sidebar .profile .avatar img { width: 36px; height: 36px; border: 1px solid #f2f3f3; border-radius: 50%; }
 
-.main .sidebar .profile .intro { display: inline-block; }
+.main .sidebar .profile .bio { display: inline-block; }
 
-.main .sidebar .profile .intro h3 { margin: 0; }
+.main .sidebar .profile .bio h3 { margin: 0; }
 
-.main .sidebar .profile .intro p { font-size: 0.75em; margin: 0; }
+.main .sidebar .profile .bio p { font-size: 0.75em; margin: 0; }
 
 .main .sidebar .profile .quote { display: none; }
 

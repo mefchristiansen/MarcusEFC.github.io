@@ -7,7 +7,7 @@ permalink: /
 <link rel="stylesheet" href="/_styles/home.css"/>
 
 <section class="intro">
-    <h2> Hi, I'm Marcus! </h2>
+    <h2> Hello! I'm <strong>Marcus Christiansen</strong> </h2>
 </section>
 
 <section class="projects">
@@ -15,18 +15,6 @@ permalink: /
 
     <div class="section-content">
         <ul class="project-listings">
-            {% for project in site.projects reversed limit: 3 %}
-                {% include project-listing.html %}
-            {% endfor %}
-            {% for project in site.projects reversed limit: 3 %}
-                {% include project-listing.html %}
-            {% endfor %}
-            {% for project in site.projects reversed limit: 3 %}
-                {% include project-listing.html %}
-            {% endfor %}
-            {% for project in site.projects reversed limit: 3 %}
-                {% include project-listing.html %}
-            {% endfor %}
             {% for project in site.projects reversed limit: 3 %}
                 {% include project-listing.html %}
             {% endfor %}
@@ -38,4 +26,8 @@ permalink: /
 
         <i class="fas fa-arrow-right hvr-icon"></i>
     </a>
+</section>
+
+<section class="contact">
+    Please get in touch with me at: <a href="mailto:mefchristiansen@gmail.com">mefchristiansen@gmail.com</a>
 </section>

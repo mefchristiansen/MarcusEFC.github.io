@@ -1,5 +1,7 @@
 @charset "UTF-8";
 /* Icon Forward */
+section { margin: 2em 0em; }
+
 section .section-title { font-size: 1.25em; font-weight: bold; margin-bottom: 0.5em; }
 
 .projects .project-listings { padding-inline-start: 0; }
@@ -39,5 +41,7 @@ section .section-title { font-size: 1.25em; font-weight: bold; margin-bottom: 0.
 .projects a:hover .hvr-icon, .projects a:focus .hvr-icon, .projects a:active .hvr-icon { -webkit-transform: translateX(4px); transform: translateX(4px); }
 
 .projects a i { margin-left: 10px; }
+
+.intro h2 { font-weight: 100; }
 
 /*# sourceMappingURL=home.css.map */
