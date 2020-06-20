@@ -34,6 +34,7 @@ a:visited
   border-bottom: 1px solid #ededed
 
   .inner-wrapper
+    @extend .center
     text-align: center
     max-width: $main-width
     display: flex
@@ -82,6 +83,7 @@ a:visited
               content: none
 
 .footer
+  @extend .center
   padding: 1em 0
   color: #aaa
   font-weight: 300
@@ -126,36 +128,70 @@ a:visited
           fill: $font-color
 
 .main
+  @extend .center
   max-width: $main-width
-  display: flex
+  display: inline
 
   .sidebar
-    position: absolute
-    height: 100%
+    @extend .center
+    max-width: $content-width
     opacity: 75%
-    transition: 0.3s
-    width: 150px
 
     .profile
-      position: sticky
-      top: 2em
+      vertical-align: top
 
       .avatar
-        display: block
-        width: auto
-        height: auto
+        display: inline-block
+        vertical-align: top
+        margin-right: 1em
 
         img
-          padding: 5px
+          width: 36px
+          height: 36px
           border: 1px solid #f2f3f3
           border-radius: 50%
-          max-width: 100px
-          width: 100%
+      
+      .intro
+        display: inline-block
+
+        h3
+          margin: 0
+
+        p
+          font-size: 0.75em
+          margin: 0
+
+      .quote
+        display: none
+
+  @media screen and (min-width: 70em)
+    display: flex
+
+    .sidebar
+      width: calc(200px - 1em)
+      position: absolute
+      height: 100%
+      transition: 0.3s
+
+      .profile
+        position: sticky
+        top: 2em
+
+        .avatar
+
+          img
+            padding: 5px
+            width: 100px
+            height: 100px
+
+        .quote
+          margin-top: 1em
+          display: block
     
     &:hover
       opacity: 100%
   
   .content
-    margin-top: 2em
+    @extend .center
     max-width: $content-width
     
