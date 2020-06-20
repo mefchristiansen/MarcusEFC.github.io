@@ -20,19 +20,19 @@
 @mixin keyframes($name)
   @if $webkit == true
     @-webkit-keyframes #{$name}
-      @content;
+      @content
 
   @if $moz == true
     @-moz-keyframes #{$name}
-      @content;
+      @content
 
   @if $ms == true
     @-ms-keyframes #{$name}
-      @content;
+      @content
 
   @if $o == true
     @-o-keyframes #{$name}
-      @content;
+      @content
 
   @keyframes #{$name}
-    @content;
+    @content
