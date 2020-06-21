@@ -41,7 +41,7 @@ One of the more challenging aspects of this project was thread management within
 
 After deciding to create a view (and as the complexity and scale of the project grew), I decided to implement an MVC (Model, View, Controller) application structure. MVC is an software design patern which separates the business logic from the UI logic. The business logic (or backend code) belongs in the model, the UI logic belongs in the view, and controller acts as the main orchestrator, handling user inputs and facilitating the connection between the front and backend. I was comfortable with this architecture as I use Rails everyday at Considdr, and Rails is MVC based. This design ultimately made the code much easier to maintain. The logical separation of the components reduced the complexity of individual classes and functions, and, due to the loose coupling nature of MVC, changes in code had a smaller area of effect and it was therefore easier to make changes without having to change a lot of code. The main difficulty that came along with using this pattern was the "glueing" of the front and back end, and making sure that changes in the backend were reflected in the view.
 
-# Future
+# Further Work
 
 There are plenty of extensions to this project, including but not limited to:
 * Writing more maze generation algorithms, to be able to generate a variety of different mazes, and to explore how the different search algorithms would approach the different kinds of mazes.

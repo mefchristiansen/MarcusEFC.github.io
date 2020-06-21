@@ -9,7 +9,7 @@ a:link { color: #29648A; }
 
 a:visited { color: #29648A; }
 
-.center, .main .content, .main .sidebar, .main, .footer, .header .inner-wrapper { margin: 0 auto; }
+.center, .main .content, .main, .footer, .header .inner-wrapper { margin: 0 auto; }
 
 .header { margin-bottom: 1em; border-bottom: 1px solid #ededed; }
 
@@ -51,7 +51,7 @@ a:visited { color: #29648A; }
 
 .main { max-width: 70em; width: 100%; display: inline; }
 
-.main .sidebar { max-width: 45em; width: 100%; }
+.main .sidebar { float: left; max-width: 45em; width: 100%; }
 
 .main .sidebar .profile { vertical-align: top; transition: 0.3s; opacity: 75%; }
 
@@ -69,7 +69,7 @@ a:visited { color: #29648A; }
 
 .main .sidebar .profile .quote { display: none; }
 
-@media screen and (min-width: 65em) { .main { display: flex; } .main .sidebar { width: 150px; position: absolute; height: 100%; } .main .sidebar .profile { position: sticky; top: 2em; } .main .sidebar .profile .avatar img { padding: 5px; width: 100px; height: 100px; } }
+@media screen and (min-width: 66em) { .main { display: flex; } .main .sidebar { width: 150px; top: 1em; } .main .sidebar .profile { position: sticky; top: 2em; } .main .sidebar .profile .avatar img { padding: 5px; width: 100px; height: 100px; } }
 
 .main .content { max-width: 45em; width: 100%; }
 
