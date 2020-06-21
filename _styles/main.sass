@@ -15,7 +15,7 @@ body
   color: $font-color
   font-family: $base-font-family
   margin: 0
-  padding: 1em
+  padding: 0em 1em
 
 h1
   font-size: 2em
@@ -190,10 +190,6 @@ a:visited
             padding: 5px
             width: 100px
             height: 100px
-
-        .quote
-          margin-top: 1em
-          display: block
   
   .content
     @extend .center
@@ -201,10 +197,17 @@ a:visited
     width: 100%
 
     section
-      margin: 2em 0em
+      margin-bottom: 2em
 
       .section-title
-          font-size: 1.25em
-          font-weight: bold
-          margin-bottom: 1em
+          font-size: 1.5em
+          font-weight: 100
+          margin: 1em 0em
+
+          a
+            text-decoration: none
+            color: $font-color
+
+            &:hover
+              color: $visited-color
     

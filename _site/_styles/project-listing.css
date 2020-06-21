@@ -34,12 +34,12 @@
 
 .projects .project-listings .project-listing .project-listing-header .project-meta ul li:last-child:after { content: none; }
 
-.projects a { display: inline-block; vertical-align: middle; -webkit-transform: perspective(1px) translateZ(0); transform: perspective(1px) translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0); -webkit-transition-duration: 0.1s; transition-duration: 0.1s; text-decoration: none; }
+.projects .project-listings a { display: inline-block; vertical-align: middle; -webkit-transform: perspective(1px) translateZ(0); transform: perspective(1px) translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0); -webkit-transition-duration: 0.1s; transition-duration: 0.1s; text-decoration: none; }
 
-.projects a .hvr-icon { -webkit-transform: translateZ(0); transform: translateZ(0); -webkit-transition-duration: 0.1s; transition-duration: 0.1s; -webkit-transition-property: transform; transition-property: transform; -webkit-transition-timing-function: ease-out; transition-timing-function: ease-out; }
+.projects .project-listings a .hvr-icon { -webkit-transform: translateZ(0); transform: translateZ(0); -webkit-transition-duration: 0.1s; transition-duration: 0.1s; -webkit-transition-property: transform; transition-property: transform; -webkit-transition-timing-function: ease-out; transition-timing-function: ease-out; }
 
-.projects a:hover .hvr-icon, .projects a:focus .hvr-icon, .projects a:active .hvr-icon { -webkit-transform: translateX(4px); transform: translateX(4px); }
+.projects .project-listings a:hover .hvr-icon, .projects .project-listings a:focus .hvr-icon, .projects .project-listings a:active .hvr-icon { -webkit-transform: translateX(4px); transform: translateX(4px); }
 
-.projects a i { margin-left: 10px; }
+.projects .project-listings a i { margin-left: 10px; }
 
 /*# sourceMappingURL=project-listing.css.map */

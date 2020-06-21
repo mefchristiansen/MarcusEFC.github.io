@@ -1,0 +1,36 @@
+@charset "UTF-8";
+/* Icon Back */
+/* Icon Forward */
+.back { display: inline-block; vertical-align: middle; -webkit-transform: perspective(1px) translateZ(0); transform: perspective(1px) translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0); -webkit-transition-duration: 0.1s; transition-duration: 0.1s; text-decoration: none; }
+
+.back .hvr-icon { -webkit-transform: translateZ(0); transform: translateZ(0); -webkit-transition-duration: 0.1s; transition-duration: 0.1s; -webkit-transition-property: transform; transition-property: transform; -webkit-transition-timing-function: ease-out; transition-timing-function: ease-out; }
+
+.back:hover .hvr-icon, .back:focus .hvr-icon, .back:active .hvr-icon { -webkit-transform: translateX(-4px); transform: translateX(-4px); }
+
+.back i { margin-right: 10px; }
+
+.project-header { margin-top: 2em; margin-bottom: 1em; }
+
+.project-header .project-title h1 { font-size: 3em; display: inline-block; margin: 0; }
+
+.project-header .project-title .github-link { float: right; width: 1.75em; height: 1.75em; fill: #c7c6c6; transition: 0.5s; }
+
+.project-header .project-title .github-link:hover { fill: #163833; }
+
+.project-header .project-meta .project-date { font-size: 0.75em; display: inline-block; }
+
+.project-header .project-meta .divider { margin: 0em 0.5em; display: inline-block; }
+
+.project-header .project-meta ul { padding: 0; margin: 0; display: inline-block; }
+
+.project-header .project-meta ul li { font-size: 0.75em; list-style: none; display: inline-block; }
+
+.project-header .project-meta ul li:first-child { margin-left: 0; }
+
+.project-header .project-meta ul li:after { margin: 0.5em; content: "•"; }
+
+.project-header .project-meta ul li:last-child:after { content: none; }
+
+.project-header .project-summary { color: #7C7F7F; }
+
+/*# sourceMappingURL=project.css.map */

@@ -2,12 +2,43 @@
 layout: default
 ---
 
-<a href="/projects" class="icon-back">
-    {{project.name}}
+<link rel="stylesheet" href="/_styles/project.css"/>
 
+<a href="/projects" class="back icon-back">
     <i class="fas fa-arrow-left hvr-icon"></i>
+    Back to Projects
 </a>
 
-<h1>{{ page.name }}</h1>
+<div class="project-header">
+    <div class="project-title">
+        <h1> {{ page.name }} </h1>
 
-{{ content }}
+        <a href="{{ project.github_link }}" class="github-link">
+            {% include icons/github.svg %}
+        </a>
+    </div>
+
+    <div class="project-meta">
+        <div class="project-date">
+            {{ page.date | date: "%Y-%m" }} 
+        </div>
+        <div class="divider">
+            -
+        </div>
+        <ul>
+            {% for tag in page.tags %}
+                <li>
+                    {{tag}}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <p class="project-summary">
+        {{page.intro}}
+    </p>
+</div>
+
+<div class="project-writeup">
+    {{ content }}
+</div>

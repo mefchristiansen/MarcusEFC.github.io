@@ -1,0 +1,65 @@
+---
+---
+
+@import "colors"
+@import "hover/icon-back"
+@import "hover/icon-forward"
+
+.back
+    @include icon-back
+    text-decoration: none
+
+    i
+        margin-right: 10px
+
+.project-header
+    margin-top: 2em
+    margin-bottom: 1em
+
+    .project-title
+        h1
+            font-size: 3em
+            display: inline-block
+            margin: 0
+
+        .github-link
+            float: right
+            width: 1.75em
+            height: 1.75em
+            fill: #c7c6c6
+            transition: 0.5s
+
+            &:hover
+                fill: $font-color
+
+    .project-meta
+        .project-date
+            font-size: 0.75em
+            display: inline-block
+
+        .divider
+            margin: 0em 0.5em
+            display: inline-block
+
+        ul
+            padding: 0
+            margin: 0
+            display: inline-block
+
+            li
+                font-size: 0.75em
+                list-style: none
+                display: inline-block
+
+                &:first-child
+                    margin-left: 0
+
+                &:after
+                    margin: 0.5em
+                    content: "•"
+
+                &:last-child:after
+                    content: none
+    
+    .project-summary
+        color: $muted-color

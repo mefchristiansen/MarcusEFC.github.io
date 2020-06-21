@@ -1,7 +1,7 @@
 @charset "UTF-8";
 html, body { background-color: white; }
 
-body { color: #163833; font-family: "Source Sans Pro", sans-serif; margin: 0; padding: 1em; }
+body { color: #163833; font-family: "Source Sans Pro", sans-serif; margin: 0; padding: 0em 1em; }
 
 h1 { font-size: 2em; }
 
@@ -69,12 +69,16 @@ a:visited { color: #29648A; }
 
 .main .sidebar .profile .quote { display: none; }
 
-@media screen and (min-width: 65em) { .main { display: flex; } .main .sidebar { width: 150px; position: absolute; height: 100%; } .main .sidebar .profile { position: sticky; top: 2em; } .main .sidebar .profile .avatar img { padding: 5px; width: 100px; height: 100px; } .main .sidebar .profile .quote { margin-top: 1em; display: block; } }
+@media screen and (min-width: 65em) { .main { display: flex; } .main .sidebar { width: 150px; position: absolute; height: 100%; } .main .sidebar .profile { position: sticky; top: 2em; } .main .sidebar .profile .avatar img { padding: 5px; width: 100px; height: 100px; } }
 
 .main .content { max-width: 45em; width: 100%; }
 
-.main .content section { margin: 2em 0em; }
+.main .content section { margin-bottom: 2em; }
 
-.main .content section .section-title { font-size: 1.25em; font-weight: bold; margin-bottom: 1em; }
+.main .content section .section-title { font-size: 1.5em; font-weight: 100; margin: 1em 0em; }
+
+.main .content section .section-title a { text-decoration: none; color: #163833; }
+
+.main .content section .section-title a:hover { color: #2E9CCA; }
 
 /*# sourceMappingURL=main.css.map */
