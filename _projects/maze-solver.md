@@ -49,3 +49,5 @@ There are plenty of extensions to this project, including but not limited to:
 * Writing more maze generation algorithms, to be able to generate a variety of different mazes, and to explore how the different search algorithms would approach the different kinds of mazes.
 * Writing more graph traversal algorithms (i.e. maze solvers), to expand my knowledge of these algorithms, to visualize how they all work, and to explore which algorithm is most suitable for different situations.
 * Enable users to edit the maze (i.e. add or remove walls)
+
+Check out the [code](https://github.com/mefchristiansen/MazeSolver) on Github
