@@ -2,7 +2,6 @@
 ---
   
 @import "colors"
-@import "hover/grow"
 
 $main-width: 70em
 $content-width: 45em
@@ -10,6 +9,7 @@ $base-font-family: "Source Sans Pro", sans-serif
 
 html, body
   background-color: white
+  height: 100%
 
 body
   color: $font-color
@@ -29,164 +29,11 @@ a:visited
 .center
   margin: 0 auto
 
-.header
-  margin-bottom: 1em
-  border-bottom: 1px solid #ededed
-
-  .inner-wrapper
-    @extend .center
-    text-align: center
-    display: flex
-    flex-wrap: wrap
-    justify-content: space-between
-    padding: 1em
-
-    .logo
-      width: 40px
-      height: 40px
-
-    .navigation
-        text-align: right
-        display: flex
-        justify-content: center
-        align-items: center
-
-        ul
-          padding: 0
-          margin: 0
-
-          li
-            list-style: none
-            display: inline-block
-
-            a
-              font-size: 1.2em
-              font-weight: 700
-              text-decoration: none
-
-              &:hover
-                color: $visited-color
-
-              &.active-link
-                color: $visited-color
-
-            &:first-child
-              a
-                margin-left: 0
-
-            &:after
-              margin: 0.75em
-              content: "•"
-
-            &:last-child:after
-              content: none
-
-.footer
-  @extend .center
-  padding: 1em 0
-  color: #aaa
-  font-weight: 300
-  position: relative
-  max-width: $content-width
-  width: 100%
-  text-align: center
-  margin-top: 2em
-
-  border-top: 1px solid #ededed
-
-  &::before
-    display: block
-    content: " "
-    width: 7px
-    height: 7px
-    border: #ededed 1px solid
-    position: absolute
-    top: -5px
-    left: 50%
-    margin-left: -5px
-    background: #FFF
-    box-shadow: #FFF 0 0 0 5px
-    border-radius: 3px
-
-  ul
-    padding: 0
-    margin: 0
-
-    li
-      @include grow
-
-      display: inline-block
-      margin: 1em .5em
-      width: 1.75em
-      height: 1.75em
-      position: relative
-
-      a
-        fill: #c7c6c6
-
-        &:hover
-          fill: $font-color
-
 .main
   @extend .center
   max-width: $main-width
   width: 100%
   display: inline
-
-  .sidebar
-    float: left
-    max-width: $content-width
-    width: 100%
-
-    .profile
-      vertical-align: top
-      transition: 0.3s
-      opacity: 75%
-
-      &:hover
-        opacity: 100%
-
-      .avatar
-        display: inline-block
-        vertical-align: top
-        margin-right: 1em
-
-        img
-          width: 36px
-          height: 36px
-          border: 1px solid #f2f3f3
-          border-radius: 50%
-      
-      .bio
-        display: inline-block
-
-        h3
-          margin: 0
-
-        p
-          font-size: 0.75em
-          margin: 0
-
-      .quote
-        display: none
-
-  @media screen and (min-width: 66em)
-    display: flex
-
-    .sidebar
-      width: 150px
-      top: 1em
-
-      .profile
-        position: sticky
-        top: 2em
-
-        .avatar
-
-          img
-            padding: 5px
-            width: 100px
-            height: 100px
   
   .content
     @extend .center

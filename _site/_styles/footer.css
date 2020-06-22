@@ -1,0 +1,17 @@
+.center, .footer { margin: 0 auto; }
+
+.footer { padding: 1em 0; color: #aaa; font-weight: 300; position: relative; max-width: 45em; width: 100%; text-align: center; margin-top: 2em; border-top: 1px solid #ededed; }
+
+.footer::before { display: block; content: " "; width: 7px; height: 7px; border: #ededed 1px solid; position: absolute; top: -5px; left: 50%; margin-left: -5px; background: #FFF; box-shadow: #FFF 0 0 0 5px; border-radius: 3px; }
+
+.footer ul { padding: 0; margin: 0; }
+
+.footer ul li { display: inline-block; vertical-align: middle; -webkit-transform: perspective(1px) translateZ(0); transform: perspective(1px) translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0); -webkit-transition-duration: 0.5s; transition-duration: 0.5s; -webkit-transition-property: transform; transition-property: transform; display: inline-block; margin: 1em .5em; width: 1.75em; height: 1.75em; position: relative; }
+
+.footer ul li:hover, .footer ul li:focus, .footer ul li:active { -webkit-transform: scale(1.1); transform: scale(1.1); }
+
+.footer ul li a { fill: #c7c6c6; }
+
+.footer ul li a:hover { fill: #163833; }
+
+/*# sourceMappingURL=footer.css.map */

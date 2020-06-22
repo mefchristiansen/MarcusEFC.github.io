@@ -8,6 +8,8 @@ tags: ["Java", "JSwing"]
 image: "/_images/maze.gif"
 ---
 
+![Maze Solver Gif](/_images/maze.gif)
+
 # Intention
 
 This project started with a desire to more fully understand, as well as code, a variety of graph traversal algorithms. Like every other CS student, I covered a multitude of graph traversal algorithms in my algorithms course, but I don't remember coding any of the algorithms. I wanted to actually code my own implementation of these algorithms, and through that more fully understand how they work, their benefits and drawbacks, and understand which algorithm is most suitable for different situations. After writing the algorithms, I then decided that I wanted to visualize them. I thought that a fun (and challenging) way to visualize them would be to build a maze solver (with a frontend view) where the algorithms would traverse and solve a maze. Essentially what I wanted to do was to animate the algorithms while they were running to visualize how they worked at a code level.

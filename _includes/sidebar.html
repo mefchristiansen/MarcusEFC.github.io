@@ -1,13 +1,41 @@
+<link rel="stylesheet" href="/_styles/sidebar.css" />
+
 <div class="sidebar">
     <div class="profile">
         <div class="avatar">
-            <img src="{{'/_images/marcus.png'}}">
+            <img src="/_images/marcus.png">
         </div>
         <div class="bio">
             <h3> Marcus Christiansen </h3>
             <p>
                 Cofounder & Lead Developer @ Considdr
             </p>
+        </div>
+
+        <div class="social">
+            <ul>
+                <li>
+                    <div class="item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Boston
+                    </div>
+                </li>
+                <li>
+                    <a class="item" href="mailto:mefchristiansen@gmail.com">
+                        {% include icons/gmail.svg %} Email
+                    </a>
+                </li>
+                <li>
+                    <a class="item" href="https://github.com/mefchristiansen" target="_blank">
+                        {% include icons/github.svg %} GitHub
+                    </a>
+                </li>
+                <li>
+                    <a class="item" href="https://www.linkedin.com/in/mefchristiansen/" target="_blank">
+                        {% include icons/linkedin.svg %} LinkedIn
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

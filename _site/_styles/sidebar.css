@@ -1,0 +1,19 @@
+.sidebar .profile { vertical-align: top; transition: 0.3s; opacity: 75%; }
+
+.sidebar .profile:hover { opacity: 100%; }
+
+.sidebar .profile .avatar { display: inline-block; vertical-align: top; margin-right: 1em; }
+
+.sidebar .profile .avatar img { width: 36px; height: 36px; border: 1px solid #f2f3f3; border-radius: 50%; }
+
+.sidebar .profile .bio { display: inline-block; }
+
+.sidebar .profile .bio h3 { margin: 0; }
+
+.sidebar .profile .bio p { font-size: 0.75em; margin: 0; }
+
+.sidebar .profile .social { display: none; }
+
+@media screen and (min-width: 68em) { .sidebar { position: absolute; width: 140px; height: 100%; } .sidebar .profile { display: block; position: sticky; top: 2em; } .sidebar .profile .avatar { display: block; } .sidebar .profile .avatar img { padding: 5px; width: 100px; height: 100px; } .sidebar .profile .social { display: block; margin-top: 1em; } .sidebar .profile .social ul { list-style: none; padding: 0; margin: 0; } .sidebar .profile .social ul li { margin-bottom: 0.5em; } .sidebar .profile .social ul li .item { display: inline-flex; align-items: center; text-align: center; color: inherit; font-size: 1em; text-decoration: none; font-size: 0.75em; } .sidebar .profile .social ul li .item svg { width: 1em; margin-right: .5em; } .sidebar .profile .social ul li .item i { width: 1em; margin-right: .5em; } }
+
+/*# sourceMappingURL=sidebar.css.map */
