@@ -3,6 +3,7 @@ include: ['_pages', '_styles', '_images']
 collections:
   projects:
     output: true
+    permalink: /projects/:path/
 
 defaults:
   - scope:

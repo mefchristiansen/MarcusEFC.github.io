@@ -40,7 +40,7 @@
   .sidebar
     position: absolute
     width: 140px
-    height: 100%
+    left: calc(((100vw - 45em - 1em) / 4) - 50px)
 
     .profile
       display: block
@@ -75,6 +75,7 @@
               font-size: 1em
               text-decoration: none
               font-size: 0.75em
+              transition: 0.3s
 
               svg
                 width: 1em
@@ -83,4 +84,9 @@
               i
                 width: 1em
                 margin-right: .5em
+
+            a.item
+              &:hover
+                fill: $muted-color
+                color: $muted-color
               

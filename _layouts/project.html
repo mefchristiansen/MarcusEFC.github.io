@@ -13,9 +13,11 @@ layout: default
     <div class="project-title">
         <h1> {{ page.name }} </h1>
 
-        <a href="{{ project.github_link }}" class="github-link" target="_blank">
-            {% include icons/github.svg %}
-        </a>
+        {% if page.github_link %}
+            <a href="{{ page.github_link }}" class="github-link" target="_blank">
+                {% include icons/github.svg %}
+            </a>
+        {% endif %}
     </div>
 
     <div class="project-meta">

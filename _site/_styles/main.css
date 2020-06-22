@@ -10,13 +10,13 @@ a:visited { color: #29648A; }
 
 .center, .main .content, .main { margin: 0 auto; }
 
-.main { max-width: 70em; width: 100%; display: inline; }
+.main { width: 100%; }
 
 .main .content { max-width: 45em; width: 100%; }
 
 .main .content section { margin-bottom: 2em; }
 
-.main .content section .section-title { font-size: 1.5em; font-weight: 100; margin: 1em 0em; }
+.main .content section .section-title { font-size: 1.5em; font-weight: 100; margin-bottom: 1em; }
 
 .main .content section .section-title a { text-decoration: none; color: #163833; }
 

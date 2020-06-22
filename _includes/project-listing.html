@@ -6,9 +6,11 @@
             <i class="fas fa-arrow-right hvr-icon"></i>
         </a>
 
-        <a href="{{ project.github_link }}" class="github-link" target="_blank">
-            {% include icons/github.svg %}
-        </a>
+        {% if project.github_link %}
+            <a href="{{ project.github_link }}" class="github-link" target="_blank">
+                {% include icons/github.svg %}
+            </a>
+        {% endif %}
     
         <div class="project-meta">
             <div class="project-date">
