@@ -2,6 +2,6 @@
 
 .projects .year-listing { width: 100%; position: relative; }
 
-.projects .year-listing::after { content: ""; display: block; border-top: 1px dashed black; right: 0; top: 50%; width: 92%; position: absolute; }
+.projects .year-listing::after { content: ""; display: block; border-top: 1px dashed black; right: 0; left: 75px; top: 50%; width: 90%; position: absolute; }
 
 /*# sourceMappingURL=projects.css.map */

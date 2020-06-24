@@ -16,7 +16,7 @@
 
 .projects .project-listings .project-listing .project-listing-header .project-title:hover .hvr-icon, .projects .project-listings .project-listing .project-listing-header .project-title:focus .hvr-icon, .projects .project-listings .project-listing .project-listing-header .project-title:active .hvr-icon { -webkit-transform: translateX(4px); transform: translateX(4px); }
 
-.projects .project-listings .project-listing .project-listing-header .project-title h3 { display: inline-block; margin: 0; }
+.projects .project-listings .project-listing .project-listing-header .project-title h3 { display: inline-block; margin: 0; font-size: 1.3em; }
 
 .projects .project-listings .project-listing .project-listing-header .project-title i { margin-left: 10px; }
 

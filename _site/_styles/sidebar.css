@@ -1,3 +1,5 @@
+.sidebar { margin-bottom: 1em; }
+
 .sidebar .profile { vertical-align: top; transition: 0.3s; opacity: 75%; }
 
 .sidebar .profile:hover { opacity: 100%; }

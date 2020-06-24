@@ -5,8 +5,8 @@
 		"projects.sass"
 	],
 	"sourcesContent": [
-		".projects {\n    .title {\n        margin-top: 0;\n        margin-bottom: 1em; }\n\n    .year-listing {\n        width: 100%;\n        position: relative;\n\n        &::after {\n            content: \"\";\n            display: block;\n            border-top: 1px dashed black;\n            right: 0;\n            top: 50%;\n            width: 92%;\n            position: absolute; } } }\n"
+		".projects {\n    .title {\n        margin-top: 0;\n        margin-bottom: 1em; }\n\n    .year-listing {\n        width: 100%;\n        position: relative;\n\n        &::after {\n            content: \"\";\n            display: block;\n            border-top: 1px dashed black;\n            right: 0;\n            left: 75px;\n            top: 50%;\n            width: 90%;\n            position: absolute; } } }\n"
 	],
 	"names": [],
-	"mappings": "AAAA,AACI,SADK,CACL,MAAM,CAAC,EACH,UAAU,EAAE,CAAC,EACb,aAAa,EAAE,GAAG,GAAG;;AAH7B,AAKI,SALK,CAKL,aAAa,CAAC,EACV,KAAK,EAAE,IAAI,EACX,QAAQ,EAAE,QAAQ,GASS;;AAhBnC,AASQ,SATC,CAKL,aAAa,EAIN,KAAK,CAAC,EACL,OAAO,EAAE,EAAE,EACX,OAAO,EAAE,KAAK,EACd,UAAU,EAAE,gBAAgB,EAC5B,KAAK,EAAE,CAAC,EACR,GAAG,EAAE,GAAG,EACR,KAAK,EAAE,GAAG,EACV,QAAQ,EAAE,QAAQ,GAAG"
+	"mappings": "AAAA,AACI,SADK,CACL,MAAM,CAAC,EACH,UAAU,EAAE,CAAC,EACb,aAAa,EAAE,GAAG,GAAG;;AAH7B,AAKI,SALK,CAKL,aAAa,CAAC,EACV,KAAK,EAAE,IAAI,EACX,QAAQ,EAAE,QAAQ,GAUS;;AAjBnC,AASQ,SATC,CAKL,aAAa,EAIN,KAAK,CAAC,EACL,OAAO,EAAE,EAAE,EACX,OAAO,EAAE,KAAK,EACd,UAAU,EAAE,gBAAgB,EAC5B,KAAK,EAAE,CAAC,EACR,IAAI,EAAE,IAAI,EACV,GAAG,EAAE,GAAG,EACR,KAAK,EAAE,GAAG,EACV,QAAQ,EAAE,QAAQ,GAAG"
 }
