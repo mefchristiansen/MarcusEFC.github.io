@@ -4,35 +4,35 @@
 
 .projects .project-listings .project-listing { display: block; list-style: none; margin-top: 1em; }
 
-.projects .project-listings .project-listing .project-listing-header { margin-bottom: 1em; }
+.projects .project-listings .project-listing .project-listing-info { margin-bottom: 1em; }
 
-.projects .project-listings .project-listing .project-listing-header .github-link { float: right; width: 1.25em; height: 1.25em; fill: #c7c6c6; transition: 0.5s; }
+.projects .project-listings .project-listing .project-listing-info .project-listing-header .project-title { display: inline-block; vertical-align: middle; -webkit-transform: perspective(1px) translateZ(0); transform: perspective(1px) translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0); -webkit-transition-duration: 0.1s; transition-duration: 0.1s; text-decoration: none; width: 90%; }
 
-.projects .project-listings .project-listing .project-listing-header .github-link:hover { fill: #163833; }
+.projects .project-listings .project-listing .project-listing-info .project-listing-header .project-title .hvr-icon { -webkit-transform: translateZ(0); transform: translateZ(0); -webkit-transition-duration: 0.1s; transition-duration: 0.1s; -webkit-transition-property: transform; transition-property: transform; -webkit-transition-timing-function: ease-out; transition-timing-function: ease-out; }
 
-.projects .project-listings .project-listing .project-listing-header .project-title { display: inline-block; vertical-align: middle; -webkit-transform: perspective(1px) translateZ(0); transform: perspective(1px) translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0); -webkit-transition-duration: 0.1s; transition-duration: 0.1s; text-decoration: none; }
+.projects .project-listings .project-listing .project-listing-info .project-listing-header .project-title:hover .hvr-icon, .projects .project-listings .project-listing .project-listing-info .project-listing-header .project-title:focus .hvr-icon, .projects .project-listings .project-listing .project-listing-info .project-listing-header .project-title:active .hvr-icon { -webkit-transform: translateX(4px); transform: translateX(4px); }
 
-.projects .project-listings .project-listing .project-listing-header .project-title .hvr-icon { -webkit-transform: translateZ(0); transform: translateZ(0); -webkit-transition-duration: 0.1s; transition-duration: 0.1s; -webkit-transition-property: transform; transition-property: transform; -webkit-transition-timing-function: ease-out; transition-timing-function: ease-out; }
+.projects .project-listings .project-listing .project-listing-info .project-listing-header .project-title h3 { display: inline-block; margin: 0; font-size: 1.3em; }
 
-.projects .project-listings .project-listing .project-listing-header .project-title:hover .hvr-icon, .projects .project-listings .project-listing .project-listing-header .project-title:focus .hvr-icon, .projects .project-listings .project-listing .project-listing-header .project-title:active .hvr-icon { -webkit-transform: translateX(4px); transform: translateX(4px); }
+.projects .project-listings .project-listing .project-listing-info .project-listing-header .project-title h3 i { margin-left: 10px; }
 
-.projects .project-listings .project-listing .project-listing-header .project-title h3 { display: inline-block; margin: 0; font-size: 1.3em; }
+.projects .project-listings .project-listing .project-listing-info .project-listing-header .github-link { float: right; width: 1.25em; height: 1.25em; fill: #c7c6c6; transition: 0.5s; }
 
-.projects .project-listings .project-listing .project-listing-header .project-title i { font-size: 1.15em; margin-left: 10px; }
+.projects .project-listings .project-listing .project-listing-info .project-listing-header .github-link:hover { fill: #163833; }
 
-.projects .project-listings .project-listing .project-listing-header .project-meta .project-date { font-size: 0.75em; display: inline-block; }
+.projects .project-listings .project-listing .project-listing-info .project-meta .project-date { font-size: 0.75em; display: inline-block; }
 
-.projects .project-listings .project-listing .project-listing-header .project-meta .divider { margin: 0em 0.5em; display: inline-block; }
+.projects .project-listings .project-listing .project-listing-info .project-meta .divider { margin: 0em 0.5em; display: inline-block; }
 
-.projects .project-listings .project-listing .project-listing-header .project-meta ul { padding: 0; margin: 0; display: inline-block; }
+.projects .project-listings .project-listing .project-listing-info .project-meta ul { padding: 0; margin: 0; display: inline-block; }
 
-.projects .project-listings .project-listing .project-listing-header .project-meta ul li { font-size: 0.75em; list-style: none; display: inline-block; }
+.projects .project-listings .project-listing .project-listing-info .project-meta ul li { font-size: 0.75em; list-style: none; display: inline-block; }
 
-.projects .project-listings .project-listing .project-listing-header .project-meta ul li:first-child { margin-left: 0; }
+.projects .project-listings .project-listing .project-listing-info .project-meta ul li:first-child { margin-left: 0; }
 
-.projects .project-listings .project-listing .project-listing-header .project-meta ul li:after { margin: 0.5em; content: "•"; }
+.projects .project-listings .project-listing .project-listing-info .project-meta ul li:after { margin: 0.5em; content: "•"; }
 
-.projects .project-listings .project-listing .project-listing-header .project-meta ul li:last-child:after { content: none; }
+.projects .project-listings .project-listing .project-listing-info .project-meta ul li:last-child:after { content: none; }
 
 .projects .project-listings a { display: inline-block; vertical-align: middle; -webkit-transform: perspective(1px) translateZ(0); transform: perspective(1px) translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0); -webkit-transition-duration: 0.1s; transition-duration: 0.1s; text-decoration: none; }
 

@@ -7,6 +7,6 @@
 
 .projects .see-more:hover .hvr-icon, .projects .see-more:focus .hvr-icon, .projects .see-more:active .hvr-icon { -webkit-transform: translateX(4px); transform: translateX(4px); }
 
-.projects .see-more i { margin-left: 10px; font-size: 1em; }
+.projects .see-more i { margin-left: 10px; }
 
 /*# sourceMappingURL=home.css.map */
