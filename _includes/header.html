@@ -10,7 +10,14 @@
 			<ul>
 				{% for endpoint in site.data.navigation %}
 					<li>
-						<a href="{{ endpoint.link }}" {% if page.url == endpoint.link %}class="active-link"{% endif %}>
+						<a href="{{ endpoint.link }}"
+							{% if page.url == endpoint.link %}
+								class="active-link"
+							{% endif %}
+							{% if endpoint.name == "CV" %}
+								target="_blank"
+							{% endif %}
+						>
 							{{ endpoint.name }}
 						</a>
 					</li>
