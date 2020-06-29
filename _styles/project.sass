@@ -2,6 +2,7 @@
 ---
 
 @import "colors"
+@import "helper"
 @import "hover/icon-back"
 @import "hover/icon-forward"
 
@@ -13,33 +14,38 @@
     i
         margin-right: 10px
 
-.project-header
+.project-info
     margin-top: 2em
     margin-bottom: 1em
 
-    .project-title
+    .project-header
         align-items: center
         justify-content: space-between
         display: flex
 
         h1
-            font-size: 3em
+            @include scaled-font(2em)
+            width: 90%
             display: inline-block
             margin: 0
 
         .github-link
             float: right
-            width: 1.75em
-            height: 1.75em
-            fill: #c7c6c6
-            transition: 0.5s
+            
+            svg
+                width: 1.75em
+                height: 1.75em
+                fill: #c7c6c6
+                transition: 0.5s
 
-            &:hover
-                fill: $font-color
+                &:hover
+                    fill: $font-color
 
     .project-meta
+        width: 90%
+
         .project-date
-            font-size: 1.25em
+            @include scaled-font(.75em)
             display: inline-block
             vertical-align: middle
 
@@ -55,7 +61,7 @@
             vertical-align: middle
 
             li
-                font-size: 1.25em
+                @include scaled-font(.75em)
                 list-style: none
                 display: inline-block
 

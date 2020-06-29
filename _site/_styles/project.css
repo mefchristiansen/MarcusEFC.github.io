@@ -9,31 +9,35 @@
 
 .back i { margin-right: 10px; }
 
-.project-header { margin-top: 2em; margin-bottom: 1em; }
+.project-info { margin-top: 2em; margin-bottom: 1em; }
 
-.project-header .project-title { align-items: center; justify-content: space-between; display: flex; }
+.project-info .project-header { align-items: center; justify-content: space-between; display: flex; }
 
-.project-header .project-title h1 { font-size: 3em; display: inline-block; margin: 0; }
+.project-info .project-header h1 { font-size: calc(2em + (26 - 14) * ((100vw - 300px) / (1600 - 300))); width: 90%; display: inline-block; margin: 0; }
 
-.project-header .project-title .github-link { float: right; width: 1.75em; height: 1.75em; fill: #c7c6c6; transition: 0.5s; }
+.project-info .project-header .github-link { float: right; }
 
-.project-header .project-title .github-link:hover { fill: #163833; }
+.project-info .project-header .github-link svg { width: 1.75em; height: 1.75em; fill: #c7c6c6; transition: 0.5s; }
 
-.project-header .project-meta .project-date { font-size: 1.25em; display: inline-block; vertical-align: middle; }
+.project-info .project-header .github-link svg:hover { fill: #163833; }
 
-.project-header .project-meta .divider { margin: 0em 0.5em; display: inline-block; vertical-align: middle; }
+.project-info .project-meta { width: 90%; }
 
-.project-header .project-meta ul { padding: 0; margin: 0; display: inline-block; vertical-align: middle; }
+.project-info .project-meta .project-date { font-size: calc(0.75em + (26 - 14) * ((100vw - 300px) / (1600 - 300))); display: inline-block; vertical-align: middle; }
 
-.project-header .project-meta ul li { font-size: 1.25em; list-style: none; display: inline-block; }
+.project-info .project-meta .divider { margin: 0em 0.5em; display: inline-block; vertical-align: middle; }
 
-.project-header .project-meta ul li:first-child { margin-left: 0; }
+.project-info .project-meta ul { padding: 0; margin: 0; display: inline-block; vertical-align: middle; }
 
-.project-header .project-meta ul li:after { margin: 0.5em; content: "•"; }
+.project-info .project-meta ul li { font-size: calc(0.75em + (26 - 14) * ((100vw - 300px) / (1600 - 300))); list-style: none; display: inline-block; }
 
-.project-header .project-meta ul li:last-child:after { content: none; }
+.project-info .project-meta ul li:first-child { margin-left: 0; }
 
-.project-header .project-summary { color: #7C7F7F; }
+.project-info .project-meta ul li:after { margin: 0.5em; content: "•"; }
+
+.project-info .project-meta ul li:last-child:after { content: none; }
+
+.project-info .project-summary { color: #7C7F7F; }
 
 .project-writeup img { width: 100%; }
 
