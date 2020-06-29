@@ -1,5 +1,6 @@
 ---
 name: Conway's Game of Life
+github_link: "https://github.com/mefchristiansen/Conways-Game-of-Life"
 tags: ["Go", "Ebiten"]
 date: 2020-06-22
 summary: "Conway's Game of Life written in Go and visualized using Ebiten."
