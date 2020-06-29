@@ -8,7 +8,7 @@ tags: ["Java", "JSwing"]
 image: "/_images/maze.gif"
 ---
 
-![Maze Solver Gif](/_images/maze.gif)
+{% include image.html url="/_images/maze.gif" description="Generating and solving a maze" %}
 
 # Intention
 

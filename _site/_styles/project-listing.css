@@ -18,7 +18,7 @@
 
 .projects .project-listings .project-listing .project-listing-header .project-title h3 { display: inline-block; margin: 0; font-size: 1.3em; }
 
-.projects .project-listings .project-listing .project-listing-header .project-title i { margin-left: 10px; }
+.projects .project-listings .project-listing .project-listing-header .project-title i { font-size: 1.15em; margin-left: 10px; }
 
 .projects .project-listings .project-listing .project-listing-header .project-meta .project-date { font-size: 0.75em; display: inline-block; }
 

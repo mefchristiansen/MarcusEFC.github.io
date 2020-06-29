@@ -19,11 +19,11 @@
 
 .project-header .project-title .github-link:hover { fill: #163833; }
 
-.project-header .project-meta .project-date { font-size: 1.25em; display: inline-block; }
+.project-header .project-meta .project-date { font-size: 1.25em; display: inline-block; vertical-align: middle; }
 
-.project-header .project-meta .divider { margin: 0em 0.5em; display: inline-block; }
+.project-header .project-meta .divider { margin: 0em 0.5em; display: inline-block; vertical-align: middle; }
 
-.project-header .project-meta ul { padding: 0; margin: 0; display: inline-block; }
+.project-header .project-meta ul { padding: 0; margin: 0; display: inline-block; vertical-align: middle; }
 
 .project-header .project-meta ul li { font-size: 1.25em; list-style: none; display: inline-block; }
 
