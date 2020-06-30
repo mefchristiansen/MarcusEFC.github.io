@@ -2,6 +2,7 @@
 ---
   
 @import "colors"
+@import "helper"
 @import "tomorrow_night"
 
 $main-width: 70em
@@ -30,7 +31,8 @@ a:visited
 .highlight
   padding: 1em
   border-radius: 0.3em
-  font-size: 14px
+  @include scaled-font(12px)
+  overflow-x: auto
 
 .center
   margin: 0 auto

@@ -13,7 +13,7 @@
 
 .project-info .project-header { align-items: center; justify-content: space-between; display: flex; }
 
-.project-info .project-header h1 { font-size: calc(2em + (26 - 14) * ((100vw - 300px) / (1600 - 300))); width: 90%; display: inline-block; margin: 0; }
+.project-info .project-header h1 { font-size: calc(2em + (26 - 20) * ((100vw - 300px) / (1600 - 300))); width: 90%; display: inline-block; margin: 0; }
 
 .project-info .project-header .github-link { float: right; }
 
@@ -23,13 +23,13 @@
 
 .project-info .project-meta { width: 90%; }
 
-.project-info .project-meta .project-date { font-size: calc(0.75em + (26 - 14) * ((100vw - 300px) / (1600 - 300))); display: inline-block; vertical-align: middle; }
+.project-info .project-meta .project-date { font-size: calc(0.75em + (26 - 20) * ((100vw - 300px) / (1600 - 300))); display: inline-block; vertical-align: middle; }
 
 .project-info .project-meta .divider { margin: 0em 0.5em; display: inline-block; vertical-align: middle; }
 
 .project-info .project-meta ul { padding: 0; margin: 0; display: inline; vertical-align: middle; }
 
-.project-info .project-meta ul li { font-size: calc(0.75em + (26 - 14) * ((100vw - 300px) / (1600 - 300))); list-style: none; display: inline-block; }
+.project-info .project-meta ul li { font-size: calc(0.75em + (26 - 20) * ((100vw - 300px) / (1600 - 300))); list-style: none; display: inline-block; }
 
 .project-info .project-meta ul li:first-child { margin-left: 0; }
 
