@@ -168,6 +168,18 @@
     
 </figure>
 
+<figure class="highlight"><pre><code class="language-go" data-lang="go"><span class="k">if</span> <span class="n">alive</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">numNeighbors</span> <span class="o">==</span> <span class="m">2</span> <span class="o">||</span> <span class="n">numNeighbors</span> <span class="o">==</span> <span class="m">3</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c">// If a cell is alive and has 2 or 3 neighbors, it survives</span>
+  <span class="n">nextGeneration</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="no">true</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">!</span><span class="n">alive</span> <span class="o">&amp;&amp;</span> <span class="n">numNeighbors</span> <span class="o">==</span> <span class="m">3</span> <span class="p">{</span>
+  <span class="c">// If a cell is dead and has 3 neighbors, it becomes alive</span>
+  <span class="n">nextGeneration</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="no">true</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="c">// All other live cells die in the next generation.</span>
+  <span class="c">// Similarly, all other dead cells stay dead.</span>
+  <span class="n">nextGeneration</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="no">false</span>
+<span class="p">}</span></code></pre></figure>
+
 </div>
 			</section>
 		</section>
