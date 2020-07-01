@@ -1,7 +1,7 @@
 ---
 name: Conway's Game of Life
-github_link: "https://github.com/mefchristiansen/Conways-Game-of-Life"
 tags: ["Go", "Ebiten"]
+github_link: "https://github.com/mefchristiansen/Conways-Game-of-Life"
 date: 2020-06-22
 summary: "Conway's Game of Life written in Go and visualized using Ebiten."
 intro: "Conway's Game of Life written in Go and visualized using Ebiten. This game lets users interact with the board by enabling them to set the state of a cell and its neighboring cells to alive on a left mouse click."

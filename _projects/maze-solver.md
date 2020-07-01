@@ -1,11 +1,10 @@
 ---
 name: Maze Solver
+tags: ["Java", "JSwing"]
 github_link: "https://github.com/mefchristiansen/Maze-Solver"
 date: 2020-04-19
 summary: "A visualized and interactive maze solver Java application that automatically generates a random maze, and then proceeds to traverse and solve the maze using a variety of graph traversal algorithms (BFS, DFS, A*)."
 intro: "A visualized and interactive maze solver Java application that automatically generates a random maze, and then proceeds to traverse and solve the maze using a variety of graph traversal algorithms (BFS, DFS, A*). This generation and traversal is visualized using JSwing, and allows the user to interact with the maze, enabling them to choose the size of the maze, the maze start and end points, the solution algorithm, as well as vary the animation speed."
-tags: ["Java", "JSwing"]
-image: "/_images/maze.gif"
 ---
 
 {% include image.html url="/_images/maze.gif" description="Generating and solving a maze" %}

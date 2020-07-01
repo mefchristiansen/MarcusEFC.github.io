@@ -45,8 +45,10 @@ layout: default
     {{ content }}
 </div>
 
-<div class="">
-    Check out the 
-    <a href="{{ page.github_link }}">code</a>
-    on Github
-</div>
+{% if page.github_link %}
+    <div class="">
+        Check out the 
+        <a href="{{ page.github_link }}">code</a>
+        on Github
+    </div>
+{% endif %}
