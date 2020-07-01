@@ -198,7 +198,9 @@ I choose Conway’s Game of Life since its a classic computer science project th
 
 <h2 id="ebiten">Ebiten</h2>
 
-<p>In order to visualize the game, I decided to use <a href="https://ebiten.org/">Ebiten</a>, a 2D game library for Go.</p>
+<p>In order to visualize the game, I decided to use <a href="https://ebiten.org/">Ebiten</a>, a 2D game library for Go. Ebiten makes it really easy to quickly develop a 2D game and I really enjoyed working with it.</p>
+
+<p>I implemented Ebiten’s <code class="language-plaintext highlighter-rouge">Game</code> interface to develop this program, which comes with a very handy <code class="language-plaintext highlighter-rouge">Update</code> function and <code class="language-plaintext highlighter-rouge">Draw</code>. The <code class="language-plaintext highlighter-rouge">Update</code> function is called every tick (1/60s by default) and it is within this function that the state of the game is updated, and the <code class="language-plaintext highlighter-rouge">Draw</code> function is called every frame which redraws the <code class="language-plaintext highlighter-rouge">Game</code> screen. These functions work in tandem to update the interface.</p>
 
 <h2 id="initial-state">Initial State</h2>
 

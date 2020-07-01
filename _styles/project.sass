@@ -6,6 +6,8 @@
 @import "hover/icon-back"
 @import "hover/icon-forward"
 
+$base-font-family: "Source Sans Pro", sans-serif
+
 .back
     @include icon-back
     text-decoration: none
@@ -80,6 +82,11 @@
         color: $muted-font-color
 
 .project-writeup
+    *:not(pre) > code
+        background: $code-background-color
+        padding: 2px 5px
+        font-family: $base-font-family
+
     figure.image
         width: 100%
         margin: 0 auto
