@@ -57,7 +57,7 @@ I implemented Ebiten's `Game` interface to develop this program, which comes wit
 
 ## Initial State
 
-Although the Game of Life is a zero-player game and the patterns will generate themselves, the game does require an initial state of alive cells (as no living cells in the initial state will lead to no patterns). In order to do this, I randomly set the state of each cell during the initialization of the board. Here I use the `rand` Go package, and seed it with the current Unix time to ensure a different initial state at each run.
+Although the Game of Life is a zero-player game and the patterns will generate themselves, the game does require an initial state of alive cells (as no living cells in the initial state will lead to no patterns). In order to do this, I randomly set the state of each cell during the initialization of the board. Here I use the `rand` Go package, and seed it with the current Unix time to ensure a different initial state at each run. The probability of a cell being alive in the initial state is variable to allow for different initial alive/dead ratios at the user's discretion.
 
 This board initialization can be seen below:
 
