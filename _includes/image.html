@@ -1,5 +1,5 @@
 <figure class="image">
-    <img src="{{ include.url }}" alt="{{ include.description }}">
+    <img src="{{ include.url }}" alt="{{ include.description }}" style="max-width: {{ include.width }}; max-height: {{ include.height }};">
 
     {% if include.description %}
         <figcaption>{{ include.description }}</figcaption>

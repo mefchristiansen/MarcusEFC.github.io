@@ -25,6 +25,7 @@
 
         h1
             @include scaled-font(2em)
+            // font-size: 3em
             width: 90%
             display: inline-block
             margin: 0
@@ -79,5 +80,14 @@
         color: $muted-font-color
 
 .project-writeup
-    img
+    figure.image
         width: 100%
+        margin: 0 auto
+
+        img
+            width: 100%
+            display: block
+            margin: 0 auto
+        
+        figcaption
+            text-align: center

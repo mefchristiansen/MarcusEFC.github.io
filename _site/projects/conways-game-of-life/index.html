@@ -149,24 +149,36 @@
 
 <div class="project-writeup">
     <figure class="image">
-    <img src="/_images/cgol.gif" alt="Conway's Game of Life" />
+    <img src="/_images/cgol.gif" alt="Conway's Game of Life" style="max-width: 400px; max-height: 400px;" />
 
     
         <figcaption>Conway's Game of Life</figcaption>
     
 </figure>
 
-<p>I completed Golang’s A Tour of Go (check out my solutions to this exercises <a href="https://gist.github.com/mefchristiansen/c8b10dadf6f2ae20922bd3b283ee1941">here</a>)</p>
+<h1 id="intention">Intention</h1>
 
-<p>I also enabled the user to be able to interact with the board by being able to set the state of a cell and its neighboring cells to alive when left clicking the cell. This allows for some really interesting results.</p>
+<p>One of the things I set out to do during this quarantine was to learn Go. I was super interested by Go’s design decision to bake concurrency directly into the core language and the ability to achieve super efficient concurrency coupled with high performance simultaneously. There has also been a lot of hype online for Go recently, and I wanted to learn something new. I also saw it as a welcome return to pointers and procedural programming after having worked with Ruby and Python professionally for a while now.</p>
 
-<figure class="image">
-    <img src="/_images/cgol-interaction.gif" alt="Setting cells to alive on a left mouse click" />
+<p>To get started, I completed Golang’s <a href="https://tour.golang.org/">A Tour of Go</a> (check out my solutions to the exercises <a href="https://github.com/mefchristiansen/Tour-of-Go-Solutions">here</a>). I really enjoyed learning a new language, and was really surprised by just how simple Go makes concurrency immediately available to you through goroutines and channels.</p>
 
-    
-        <figcaption>Setting cells to alive on a left mouse click</figcaption>
-    
-</figure>
+<h2 id="conways-game-of-life">Conway’s Game of Life</h2>
+
+<p>In an effort to practice more and build my first Go program, I decided to implement <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway’s Game of Life</a>.
+I choose Conway’s Game of Life since its a classic computer science project that I haven’t yet implemented, and I saw this as a good opportunity to do so.</p>
+
+<p>The Game of Life is a cellular automaton zero-player game. It takes place on a 2D grid of cells, where each cell can either be alive or dead. At each iteration, the state of a cell is determined by a set of rules which take into account the state of a cell’s neighbors (the cells horizontally, vertically and diagonally adjacent). Following an initial configuration of alive and dead cells, the rules are iteratively applied and thus patterns automatically evolve over time on the grid.</p>
+
+<p>The rules that determine the next iteration of cells are as follows:</p>
+
+<ol>
+  <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</li>
+  <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+  <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
+  <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+</ol>
+
+<p>These rules can be simplified to the following three (in code):</p>
 
 <figure class="highlight"><pre><code class="language-go" data-lang="go"><span class="k">if</span> <span class="n">alive</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">numNeighbors</span> <span class="o">==</span> <span class="m">2</span> <span class="o">||</span> <span class="n">numNeighbors</span> <span class="o">==</span> <span class="m">3</span><span class="p">)</span> <span class="p">{</span>
   <span class="c">// If a cell is alive and has 2 or 3 neighbors, it survives</span>
@@ -180,6 +192,65 @@
   <span class="n">nextGeneration</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="no">false</span>
 <span class="p">}</span></code></pre></figure>
 
+<p>Check out this <a href="https://www.youtube.com/watch?v=C2vgICfQawE">video</a> for some incredible patterns (just turn down your volume first).</p>
+
+<h1 id="execution--design-decisions">Execution / Design Decisions</h1>
+
+<h2 id="ebiten">Ebiten</h2>
+
+<p>In order to visualize the game, I decided to use <a href="https://ebiten.org/">Ebiten</a>, a 2D game library for Go.</p>
+
+<h2 id="initial-state">Initial State</h2>
+
+<p>Although the Game of Life is a zero-player game and the patterns will generate themselves, the game does require an initial state of alive cells (as no living cells in the initial state will lead to no patterns). In order to do this, I randomly set the state of each cell during the initialization of the board. Here I use the <code class="language-plaintext highlighter-rouge">rand</code> Go package, and seed it with the current Unix time to ensure a different initial state at each run.</p>
+
+<p>This board initialization can be seen below:</p>
+
+<figure class="highlight"><pre><code class="language-go" data-lang="go"><span class="k">func</span> <span class="n">initBoard</span><span class="p">(</span><span class="n">dimension</span> <span class="kt">int</span><span class="p">,</span> <span class="n">initialStateProbability</span> <span class="kt">float32</span><span class="p">)</span> <span class="p">[][]</span><span class="n">Cell</span> <span class="p">{</span>
+	<span class="n">cells</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([][]</span><span class="n">Cell</span><span class="p">,</span> <span class="n">dimension</span><span class="p">)</span>
+
+	<span class="c">// Seed the random number generator to get a different initial state every time</span>
+	<span class="n">rand</span><span class="o">.</span><span class="n">Seed</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Now</span><span class="p">()</span><span class="o">.</span><span class="n">UTC</span><span class="p">()</span><span class="o">.</span><span class="n">UnixNano</span><span class="p">())</span>
+
+	<span class="k">for</span> <span class="n">row</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">dimension</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span> <span class="p">{</span>
+		<span class="n">cells</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">=</span> <span class="nb">make</span><span class="p">([]</span><span class="n">Cell</span><span class="p">,</span> <span class="n">dimension</span><span class="p">)</span>
+
+		<span class="k">for</span> <span class="n">col</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="n">dimension</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span> <span class="p">{</span>
+			<span class="n">cells</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">Cell</span><span class="p">{</span>
+				<span class="n">row</span><span class="o">:</span>   <span class="n">row</span><span class="p">,</span>
+				<span class="n">col</span><span class="o">:</span>   <span class="n">col</span><span class="p">,</span>
+				<span class="n">state</span><span class="o">:</span> <span class="n">rand</span><span class="o">.</span><span class="n">Float32</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">initialStateProbability</span><span class="p">,</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="n">cells</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="interaction">Interaction</h2>
+
+<p>I also enabled the user to be able to interact with the board by being able to set the state of a cell and its neighboring cells to alive when left clicking the cell. This allows for some really interesting results. This works by listening for a user click (by using the Ebiten API) and switching the state of the correponding cell and its neighbors (the cells horizontally, vertically and diagonally adjacent) to being alive.</p>
+
+<figure class="image">
+    <img src="/_images/cgol-interaction.gif" alt="Setting cells to alive on a left mouse click" style="max-width: 400px; max-height: 400px;" />
+
+    
+        <figcaption>Setting cells to alive on a left mouse click</figcaption>
+    
+</figure>
+
+<h1 id="future-work">Future Work</h1>
+
+<p>There are many potential extensions of this project, the main one being designing and discovering initial configurations that produce interesting patterns, I am done working on this for now.</p>
+
+<p>This project definitely boosted my confidence and comfortability in working with Go, but I feel like the best way to learn it properly is to use it for what it was designed for, i.e. high-performance concurrency. So that means that my next Go project will be using its baked in concurrency features to do just that.</p>
+
+</div>
+
+<div class="">
+    Check out the 
+    <a href="https://github.com/mefchristiansen/Conways-Game-of-Life">code</a>
+    on Github
 </div>
 			</section>
 		</section>

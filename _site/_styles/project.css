@@ -39,6 +39,10 @@
 
 .project-info .project-summary { color: #7C7F7F; }
 
-.project-writeup img { width: 100%; }
+.project-writeup figure.image { width: 100%; margin: 0 auto; }
+
+.project-writeup figure.image img { width: 100%; display: block; margin: 0 auto; }
+
+.project-writeup figure.image figcaption { text-align: center; }
 
 /*# sourceMappingURL=project.css.map */
