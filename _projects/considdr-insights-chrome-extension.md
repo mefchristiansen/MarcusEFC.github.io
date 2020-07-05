@@ -8,3 +8,21 @@ intro: "A Chrome extension that highlights the key insights in documents across 
 ---
 
 {% include image.html url="/_images/considdr-insights.gif" description="Highlighting insights across documents" %}
+
+# Intention
+
+# Execution / Design Decisions
+
+## Insights API
+
+<!-- Lambda and API Gateway -->
+
+### Ruby on Jets
+
+### Lambda Authorizers
+
+## Chrome Extension
+
+### Chrome API
+
+# Future Work
