@@ -17,9 +17,9 @@ Inspired by similar projects, I wanted to write a script that converts all of th
 
 ## Clients / Authentication
 
-In order to get your liked Youtube videos and to add tracks to a Spotify playlist of yours, this script interfaces with APIs.
+In order to to be able to get your liked Youtube videos and to add tracks to a Spotify playlist of yours, this script interfaces with APIs.
 
-To request your liked Youtube videos, this script uses the [Youtube API](https://developers.google.com/youtube/v3), and [Google's API Python client](https://github.com/googleapis/google-api-python-client) to make it easier to interface with the API.
+To request liked Youtube videos, this script uses the [Youtube API](https://developers.google.com/youtube/v3), and [Google's API Python client](https://github.com/googleapis/google-api-python-client) to make it easier to interface with the API.
 
 To add songs to your Spotify, this script uses the [Spotify Web API](https://developer.spotify.com/documentation/web-api/) and the [Spotipy](https://github.com/plamere/spotipy) Python library.
 
