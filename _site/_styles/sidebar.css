@@ -1,4 +1,4 @@
-.sidebar { margin-bottom: 1em; }
+.sidebar { margin-bottom: 1em; max-width: 45em; width: 100%; margin: 0 auto; }
 
 .sidebar .profile { vertical-align: top; transition: 0.3s; opacity: 75%; }
 

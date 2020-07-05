@@ -53,7 +53,7 @@ Check out this [video](https://www.youtube.com/watch?v=C2vgICfQawE) for some inc
 
 In order to visualize the game, I decided to use [Ebiten](https://ebiten.org/), a 2D game library for Go. Ebiten makes it really easy to quickly develop a 2D game and I really enjoyed working with it.
 
-I implemented Ebiten's `Game` interface to develop this program, which comes with a very handy `Update` function and `Draw`. The `Update` function is called every tick (1/60s by default) and it is within this function that the state of the game is updated, and the `Draw` function is called every frame which redraws the `Game` screen. These functions work in tandem to update the interface.
+I implemented Ebiten's `Game` interface to develop this program, which comes with very handy `Update` and `Draw` functions. The `Update` function is called every tick (1/60s by default) and it is within this function that the state of the game is updated. The `Draw` function is called every frame which redraws the `Game` screen. These functions work in tandem to update the interface.
 
 ## Initial State
 
@@ -94,6 +94,6 @@ I also enabled the user to be able to interact with the board by being able to s
 
 # Future Work
 
-There are many potential extensions of this project, the main one being designing and discovering initial configurations that produce interesting patterns, I am done working on this for now.
+There are many potential extensions of this project, the main one being designing and discovering initial configurations that produce interesting patterns. However, for now, I am done working on this for now.
 
 This project definitely boosted my confidence and comfortability in working with Go, but I feel like the best way to learn it properly is to use it for what it was designed for, i.e. high-performance concurrency. So that means that my next Go project will be using its baked in concurrency features to do just that.

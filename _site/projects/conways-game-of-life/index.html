@@ -200,7 +200,7 @@ I choose Conway’s Game of Life since its a classic computer science project th
 
 <p>In order to visualize the game, I decided to use <a href="https://ebiten.org/">Ebiten</a>, a 2D game library for Go. Ebiten makes it really easy to quickly develop a 2D game and I really enjoyed working with it.</p>
 
-<p>I implemented Ebiten’s <code class="language-plaintext highlighter-rouge">Game</code> interface to develop this program, which comes with a very handy <code class="language-plaintext highlighter-rouge">Update</code> function and <code class="language-plaintext highlighter-rouge">Draw</code>. The <code class="language-plaintext highlighter-rouge">Update</code> function is called every tick (1/60s by default) and it is within this function that the state of the game is updated, and the <code class="language-plaintext highlighter-rouge">Draw</code> function is called every frame which redraws the <code class="language-plaintext highlighter-rouge">Game</code> screen. These functions work in tandem to update the interface.</p>
+<p>I implemented Ebiten’s <code class="language-plaintext highlighter-rouge">Game</code> interface to develop this program, which comes with very handy <code class="language-plaintext highlighter-rouge">Update</code> and <code class="language-plaintext highlighter-rouge">Draw</code> functions. The <code class="language-plaintext highlighter-rouge">Update</code> function is called every tick (1/60s by default) and it is within this function that the state of the game is updated. The <code class="language-plaintext highlighter-rouge">Draw</code> function is called every frame which redraws the <code class="language-plaintext highlighter-rouge">Game</code> screen. These functions work in tandem to update the interface.</p>
 
 <h2 id="initial-state">Initial State</h2>
 
@@ -243,7 +243,7 @@ I choose Conway’s Game of Life since its a classic computer science project th
 
 <h1 id="future-work">Future Work</h1>
 
-<p>There are many potential extensions of this project, the main one being designing and discovering initial configurations that produce interesting patterns, I am done working on this for now.</p>
+<p>There are many potential extensions of this project, the main one being designing and discovering initial configurations that produce interesting patterns. However, for now, I am done working on this for now.</p>
 
 <p>This project definitely boosted my confidence and comfortability in working with Go, but I feel like the best way to learn it properly is to use it for what it was designed for, i.e. high-performance concurrency. So that means that my next Go project will be using its baked in concurrency features to do just that.</p>
 
