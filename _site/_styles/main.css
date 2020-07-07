@@ -156,4 +156,6 @@ a:visited { color: #29648A; }
 
 .main .content section .section-title a:hover { color: #2E9CCA; }
 
+figure.image figcaption { margin-top: 1em; }
+
 /*# sourceMappingURL=main.css.map */
