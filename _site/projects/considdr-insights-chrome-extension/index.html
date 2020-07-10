@@ -176,6 +176,242 @@
     
 </figure>
 
+<h1 id="intention">Intention</h1>
+
+<p>Due to the COVID-19 quarantine, I had a lot of extra free time on my hands, and I wanted to do something productive with it. A project that we have wanted to do for a long time at <a href="https://www.considdr.com">Considdr</a>, one that received significant enthusiasm from our customers, was to build a Chrome extension that highlights key insights that we have identified from articles as our customers browse the web. This way, when reading new articles or sources that were relevant to them, they could quickly and easily pick out high-quality insights. I took it upon myself to build this extension <strong>1.</strong> to build a product that would significantly improve our customers’ research experience and <strong>2.</strong> to learn something new now that I had the time.</p>
+
+<p>This project was more of a proof of concept that we wanted to test with our customers to see if it actually worked and helped them in the way that we were intending it to.</p>
+
+<h1 id="execution--design-decisions">Execution / Design Decisions</h1>
+
+<p>This project consisted of two parts, the Chrome extension itself (the frontend) and the insights API (the backend) that it interfaces with to get insights on a particular article.</p>
+
+<h2 id="insights-api">Insights API</h2>
+
+<p>The Insights API is a web API that was developed to support the Chrome extension. This API returns the key insights that Considdr has identified from a particular article on the web. The API code is proprietary and unfortunately not available on GitHub.</p>
+
+<h3 id="aws-lambda-and-api-gateway">AWS Lambda and API Gateway</h3>
+
+<p>To build this API I chose to use AWS Lambda and AWS API Gateway. Lambda is a serverless computing platform that executes code only when needed (it’s event-driven). API Gateway is an API management tool that sits between a client and a backend service, routing incoming requests to the right places. Lambda and API Gateway actually work very well in tandem, making it very easy to build a REST API. API Gateway sets up the HTTP endpoints for the API and then routes incoming requests to the corresponding Lambda function which then services the request. I chose to use Lambda as it’s quick and easy to set up (no need to provision any servers), and you only pay for the compute time that you use.</p>
+
+<h3 id="ruby-on-jets">Ruby on Jets</h3>
+
+<p>I decided to use the <a href="https://rubyonjets.com/">Ruby on Jets</a> framework to develop this API. Jets is a Ruby serverless framework that makes deploying serverless services to AWS extremely easy, turning your code into AWS resources. AWS can get overwhelming at times when creating and dealing with a lot of resources, and does require a lot of configuration, often in the format of YAML files. I decided to let Jets handle a lot of the AWS configuration and to focus on building the API itself.</p>
+
+<p>Jets works a lot like Ruby on Rails. However, as Jets creates serverless resources, routes get turned into API Gateway endpoints, and controller functions get turned in Lambda functions. Thus, whenever one of the API Gateway endpoints is hit, it executes the corresponding Lambda function to service the request. I have a lot of experience working with Rails at Considdr, and so working with Jets was seamless and very enjoyable.</p>
+
+<h3 id="lambda-authorizers">Lambda Authorizers</h3>
+
+<p>Since we wanted to restrict access to this API to our customers, we needed user authentication. API Gateway offers a really neat feature to control access to an API, in the form of <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html">Lambda Authorizers</a>. A Lambda authorizer is a Lambda function that, using a custom authorization scheme, is run before executing an API method to authenticate the incoming request. If the request is authorized, the endpoint function is executed, if not, the request is rejected.</p>
+
+<p>The authorizer returns an IAM policy as output to indicte if the request was authorized or not. The policy will look something like the following:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span>
+  <span class="s2">"principalId"</span><span class="p">:</span> <span class="n">user_id</span><span class="p">,</span> <span class="c1"># The id of the current user</span>
+  <span class="s2">"policyDocument"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"Version"</span><span class="p">:</span> <span class="s2">"2012-10-17"</span><span class="p">,</span>
+    <span class="s2">"Statement"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">"Action"</span><span class="p">:</span> <span class="s2">"execute-api:Invoke"</span><span class="p">,</span>
+        <span class="s2">"Effect"</span><span class="p">:</span> <span class="s2">"Allow"</span><span class="p">,</span> <span class="c1"># or Deny if the request was not authorized</span>
+        <span class="s2">"Resource"</span><span class="p">:</span> <span class="n">resource</span> <span class="c1"># i.e. the correponding Lambda function</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Lambda authorizers help to separate and centralize authentication logic into a single function so that you don’t need to package it with every function. Furthermore, you can cache the authorizer response for a specific user to speed up subsequent requests.</p>
+
+<p>There are two types of Lambda authorizers:</p>
+<ul>
+  <li>Token-based authorizers: Authorizes the request using a provided bearer token.</li>
+  <li>Request parameter-based authorizers: Authorizes the request using a combination of headers, query string parameters, stageVariables, and $context variables.</li>
+</ul>
+
+<p>I chose to build a Request parameter-based Lambda Authorizer as I chose to authenticate users using a token stored in a cookie on the user’s browser. When a user requests insights from the API, the Lambda Authorizer will first check the validity of the request’s cookies before authorizing the request.</p>
+
+<h3 id="authentication">Authentication</h3>
+
+<p>I went back and forth a lot of how I was going to design the authentication for this Chrome Extension and API. Ultimately I settled on using Token-Based Authentication and storing the token in a cookie on the user’s browser.</p>
+
+<h4 id="jwt">JWT</h4>
+
+<p>The token that is stored in the cookie set by the server is a <a href="https://jwt.io/introduction/">JSON Web Token</a> (JWT). A JWT is a standardized, compact, and digitally signed container format used to securely transfer information between parties. A JWT is cryptographically signed, meaning that it cannot be modified without invalidating it.</p>
+
+<p>A JWT consists of three parts:</p>
+<ul>
+  <li>Header: A JSON Object containing the JWT metadata, including the cryptographic algorithms to generate the signature. This is Base64Url encoded to form the first part of the JWT.</li>
+  <li>Payload: A JSON Object containing a set of claims (i.e. data), e.g. user information. This is Base64Url encoded to form the second part of the JWT.</li>
+  <li>Signature: A string that securely validates the token, ensuring that the JWT has not been tampered with. This signature is generated using the chosen cryptographic algorithm and a secret key. This forms the third part of the JWT.</li>
+</ul>
+
+<p>This is encoded and compacted into three Base64-URL strings separated by dots, generating the JWT itself, for example:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span><span class="p">.</span>
+<span class="nf">eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ</span><span class="o">.</span>
+<span class="no">SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</span></code></pre></figure>
+
+<p>This token can then be securely transferred and decoded (you will need the correct secret key to do so) to extract the payload.</p>
+
+<p>I chose to use JWTs as they are a stateless (no need to store a session in the database as the user information is store in the token itself) and secure way to automatically authenticate the user.</p>
+
+<p>Below is an example of the JWT structure that would be generated and set in the cookie in response to a sign in request to the API:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">JWT</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span>
+    <span class="s1">'HS256'</span> <span class="c1"># My chosen cryptographic algorithm,</span>
+    <span class="no">ENV</span><span class="p">[</span><span class="s1">'SECRET_KEY_BASE'</span><span class="p">],</span> <span class="c1"># The secret key</span>
+    <span class="c1"># The payload</span>
+    <span class="p">{</span>
+        <span class="ss">user_id: </span><span class="n">user_id</span><span class="p">,</span> <span class="c1"># The current user's id</span>
+        <span class="ss">exp: </span><span class="n">expiration</span><span class="p">,</span> <span class="c1"># This JWT's expiration Unix timestamp</span>
+        <span class="ss">jwt_version: </span><span class="n">jwt_version</span><span class="p">,</span> <span class="c1"># This JWT's version number</span>
+        <span class="ss">csrf_token: </span><span class="n">csrf_token</span> <span class="c1"># This JWT's CSRF token</span>
+    <span class="p">}</span>
+<span class="p">)</span></code></pre></figure>
+
+<p>When a request is made to the API, the Lambda Authorizer will check the validity of the provided JWT before authorizing the request.</p>
+
+<p>As a JWT is theoretically infinitely valid if not tampered with, there needs to be some mechanism to invalidate it. The mechanism I chose to implement was to set an expiration time in the JWT payload, after which, the server would reject it. I also chose to include a JWT version number so that once a user signs out from the Chrome extension, the version number is incremented, and so that JWT will no longer be valid.</p>
+
+<h4 id="cookies">Cookies</h4>
+
+<p>A <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookie</a> is a small piece of data that is sent from a remote server and stored in the user’s browser. This data can be used to aid in authentication, personalization, etc. If using cookies to aid in authentication, when a user hits the sign-in endpoint and provides their login credentials, the server will set a cookie in the user’s browser, containing some authentication key, in its response. Cookies are set if the server HTTP response contains the <code class="language-plaintext highlighter-rouge">Set-Cookie</code> header. Then, on every subsequent request, the browser will include the cookie in its request to the server, and the server checks the validity of the cookie value, automating the authentication of every request.</p>
+
+<p>I chose to store the token in a cookie as I wanted to protect against a common security risk, <a href="https://owasp.org/www-community/attacks/xss">Cross-site Scripting</a> (XSS) attacks. An XSS attack is a malicious code injection into a user’s browser (typically using Javascript). When implementing token-based authentication, the access token needs to be stored somewhere on the client, and this is many times does in localStorage. localStorage is vulnerable to XSS as any Javascript on a page has access to localStorage, and a malicious script can retrieve the actual token values stored there. To avoid this security threat, a token can be stored in a cookie, more specifically an <code class="language-plaintext highlighter-rouge">httpOnly</code> cookie, which makes it impossible for the browser to read the values stored in that cookie. Instead, a sign-in request to the API will set the cookie, and then every subsequent request to the API will have the cookie attached to it. Furthermore, the Insights API also sets the cookie to be a <code class="language-plaintext highlighter-rouge">secure</code> cookie, meaning that the cookie will only be sent over HTTPS.</p>
+
+<p>Although storing the JWT in a cookie helps to protect against XSS, it does leave us vulnerable to <a href="https://owasp.org/www-community/attacks/csrf">Cross Site Request Forgery</a> (CSRF). A CSRF attack is a web security vulnerability that allows an attacker to trick a browser to execute an unwanted action in an application in which the user is already logged in. A CSRF typically takes shape in the form of an email or link that tricks the victim into sending a forged request to a server. Cookies are vulnerable to CSRF attacks as the user’s authentication information is automatically sent along with every request, making it impossible to distinguish a legitimate request from a forged one. To protect against CSRF, I utilized a CSRF token. This token is randomly generated by the server and stored client-side when the user logs in. This token is then passed along with a subsequent request to the API, and validated by the server. This API validates the token by comparing it to the CSRF token stored in the JWT’s payload. As an attacker cannot determine the value of the CSRF token, they cannot construct a fully valid HTTP request. Although there are no vulnerable actions that an attacker could exploit on the Considdr API, I wanted to implement this as a best practice, and to prepare for any potential future additions to the API.</p>
+
+<p>Using cookies works best for when the client is a browser and in the case of the Chrome extension, the client is a browser. However, for clients besides browsers, managing cookies is very inconvenient. Thus, if we choose to expand the functionality of our API, we may need to expand its authentication capabilities to make it convenient to interface with it using a variety of clients.</p>
+
+<h2 id="chrome-extension">Chrome Extension</h2>
+
+<p>The other half of this project was building the Chrome extension itself.</p>
+
+<p>The extension allows our customers to sign in, and then it will highlight the key insights that Considdr has identified from articles as they browse the web. A user can either trigger the highlighting manually by clicking a button in the extension which will highlight the insights on the current article or, if they enable automatic highlighting, the extension will automatically highlight key insights as they browse articles. The number of insights that were found in a specific article is reflected in the extension badge.</p>
+
+<p>I used the following boilerplate to build this extension: <a href="https://github.com/samuelsimoes/chrome-extension-webpack-boilerplate">https://github.com/samuelsimoes/chrome-extension-webpack-boilerplate</a></p>
+
+<h3 id="background-scripts--popup--content-script">Background Scripts / Popup / Content Script</h3>
+
+<p>The three major components of this Chrome extension are the <a href="https://developer.chrome.com/extensions/background_pages">background script</a> the <a href="https://developer.chrome.com/extensions/user_interface#popup">popup</a>, and <a href="https://developer.chrome.com/extensions/content_scripts">content scripts</a>.</p>
+
+<p>The background script runs in the background, listening and responding to browser events (such as creating a new tab, navigating to a new page, etc.). I used the background script to register all the required listeners and to handle all the event logic.</p>
+
+<p>The popup is an HTML file displayed when the user clicks the extension icon in the toolbar. This is where the user logs into the Considdr Insights extension and can trigger the insight highlighting. I used <a href="https://reactjs.org/">React</a> (with Yarn, Babel, and Webpack) to build the popup UI.</p>
+
+<p>Content scripts run in the context of webpages and are the method to interact and manipulates a webpage itself. To highlight the insights on a webpage, I used a content script.</p>
+
+<h4 id="message-passing">Message Passing</h4>
+
+<p>The background script, popup, and content script exist in separate <a href="https://developer.chrome.com/extensions/content_scripts#isolated_world">isolated worlds</a>, meaning that they are sandboxed, have no knowledge of each other, and thus cannot directly access each other.</p>
+
+<p>Therefore, to communicate with one another, I used Chrome’s <a href="https://developer.chrome.com/extensions/messaging">message-passing</a> system. This system lets each of these components send data between each other. I used this system to pass the insights retrieved from the API to the content script and to allow the content script to inform both the background script and popup when the highlighting of insights was complete.</p>
+
+<p>Below is an example of how this system works.</p>
+
+<p>Here, a message is sent to the event listeners. This message can contain any necessary data to be passed along. The type field is used to indicate what type of message is being sent, which is parsed by an event listener to respond accordingly:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">highlight</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">({</span>
+        <span class="na">type</span><span class="p">:</span> <span class="p">...,</span>
+        <span class="p">...</span>
+    <span class="p">})</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Here, an event listener listens and responds to events. The event listener can switch on the message’s event type to respond appropriately:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">onMessage</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">sender</span><span class="p">,</span> <span class="nx">sendResponse</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">switch</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+<span class="p">})</span></code></pre></figure>
+
+<h4 id="insights-highlighting-content-script">Insights Highlighting Content Script</h4>
+
+<p>I implemented a content script to highlight the insights on the webpage. When insights are to be highlighted, the background script requests the insights from the API, and then triggers the highlighting content script, passing along the insights. This content script identifies all of the insights returned from the API on the page, wraps each insight in an animation wrapper, and triggers the highlighting animation.</p>
+
+<p>Not all insights returned from the API are found by the content script. This is due to the formatting of the webpage itself, making it very difficult to identify the insights within its HTML. The content script will identify all of the insights that can be found on the page (i.e. the valid insights), and store them in Chrome storage. Thus, when the content script is triggered the next time on the same page, instead of requesting insights from the API, the insights are just accessed from storage, minimizing the number of hits to the API.</p>
+
+<h3 id="chrome-api">Chrome API</h3>
+
+<p>The way that a Chrome Extension interfaces with Chrome itself is through the <a href="https://developer.chrome.com/extensions/api_index">Chrome API</a>. The APIs I used to build this extension included <a href="https://developer.chrome.com/extensions/tabs">tabs</a>, <a href="https://developer.chrome.com/extensions/storage">storage</a>, <a href="https://developer.chrome.com/extensions/runtime">runtime</a>, and <a href="https://developer.chrome.com/extensions/windows">windows</a>.</p>
+
+<h4 id="tabs">Tabs</h4>
+
+<p>The tabs API is used to interact with Chrome’s tab system and to listen for tab events. I used the tabs API to determine which was the currently active tab so as to highlight the correct insights, and to listen for events, including:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">onActivated</code>: Fires when the active tab changes. I set a listener for this event to set the badge when a tab was switched to in order to accurately reflect the number of insights on that tab.</li>
+  <li><code class="language-plaintext highlighter-rouge">onUpdated</code>: Fires when a tab is updated. I set a listener for this event to again set the badge to reflect the number of insights on that tab, and also to trigger automatic insight highlighting (if the user has checked the auto highlight checkbox)</li>
+</ul>
+
+<p>Below is an example of how I listened and responded to the <code class="language-plaintext highlighter-rouge">onUpdated</code> event (the listener for this event was registered in the background script):</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">chrome</span><span class="p">.</span><span class="nx">tabs</span><span class="p">.</span><span class="nx">onUpdated</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">tabID</span><span class="p">,</span> <span class="nx">changeInfo</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Only update the badge or trigger autohighlighting</span>
+    <span class="c1">// if the tab's URL was changed</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">changeInfo</span><span class="p">.</span><span class="nx">url</span><span class="p">))</span> <span class="k">return</span>
+
+    <span class="c1">// Update the badge's insight count</span>
+    <span class="nx">updateBadge</span><span class="p">(</span><span class="nx">changeInfo</span><span class="p">.</span><span class="nx">url</span><span class="p">)</span>
+
+    <span class="nx">autoHighlightRepository</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">status</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// If the user has enabled autohighlight, trigger the script</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">status</span><span class="p">)</span> <span class="nx">autoHighlight</span><span class="p">(</span><span class="nx">tabID</span><span class="p">,</span> <span class="nx">changeInfo</span><span class="p">.</span><span class="nx">url</span><span class="p">)</span>
+    <span class="p">})</span>
+<span class="p">})</span></code></pre></figure>
+
+<h4 id="storage">Storage</h4>
+
+<p>The storage API is used to store and retrieve data pertaining to the extension, providing a similar storage capability as localStorage. I used this storage to store insights retrieved from the API (to avoid hitting the API more than once per page), the user’s auto highlight preference, and the CSRF token.</p>
+
+<p>A really nice feature of Chrome storage is that content scripts can directly access it, as they cannot directly access the same localStorage as the background script.</p>
+
+<p>Storage and retrieval are asynchronous actions, so I used callback functions to execute code after data was stored or retrieved.</p>
+
+<p>Below is an example of storing insights in Chrome storage. Insights were associated with the URL of their page, allowing for easy access when the user returns to this page and the insights need to be highlighted again.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">persist</span> <span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">validInsights</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">url</span> <span class="o">||</span> <span class="o">!</span><span class="nx">validInsights</span><span class="p">)</span> <span class="k">return</span>
+
+    <span class="c1">// Get the current insights map </span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">chrome</span><span class="p">.</span><span class="nx">storage</span><span class="p">.</span><span class="nx">local</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">highlights</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Execute a callback after retrieving the current insights map </span>
+
+        <span class="kd">var</span> <span class="nx">highlights</span>
+
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="nx">highlights</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">highlights</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+            <span class="c1">// If the insights map does not currently exist in storage, create it</span>
+            <span class="nx">highlights</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Add the passed insights to the map (associating them with their URL)</span>
+        <span class="nx">highlights</span><span class="p">[</span><span class="nx">url</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="na">insights</span><span class="p">:</span> <span class="nx">validInsights</span><span class="p">,</span>
+            <span class="na">numInsights</span><span class="p">:</span> <span class="nx">validInsights</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+            <span class="na">lastAccesssed</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Store the map in Chrome storage</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">chrome</span><span class="p">.</span><span class="nx">storage</span><span class="p">.</span><span class="nx">local</span><span class="p">.</span><span class="kd">set</span><span class="p">({</span><span class="na">highlights</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">highlights</span><span class="p">)})</span>
+
+        <span class="c1">// Execute the callback passed to the function (if valid)</span>
+        <span class="nx">callback</span> <span class="o">&amp;&amp;</span> <span class="nx">callback</span><span class="p">()</span>
+    <span class="p">})</span>
+<span class="p">}</span></code></pre></figure>
+
+<h1 id="future-work">Future Work</h1>
+
+<p>This project has an abundance of possible extensions that would make it much better. These include but are not limited to:</p>
+<ul>
+  <li>Implementing a send feature where the user could send the current page that they are on to be processed by Considdr so that key insights could be identified. Considdr does not currently scrape the entire web, and we do not have every article parsed. This way, a user could send an article to Considdr that has not already been scraped, so that insights could be identified for them.</li>
+  <li>Allowing users to manually highlight insights on a page and save to them to their Considdr collections for future reference and use</li>
+  <li>Leveraging Considdr’s Similar Insights feature to show users similar insights from articles across the web if they hover over an identified insight. Considdr groups insights it has identified based on similarity using NLP. So if a group of insights are making the same or a very similar argument, they are clustered together. This way, users of Considdr can easily identify trends in a space of interest, it reduces the need to read the same thing written differently again and again, and can also increase one’s confidence that the point being made is valid. This extension can utilize this feature by showing users the similar insights of the insights identified of a page and direct them to the sources of those other insights.</li>
+  <li>Expand the authentication capabilities of the Insights API to account for a variety of clients</li>
+  <li>Improve the parsing of the webpage by the highlight content script to highlight more insights returned from the API</li>
+</ul>
+
 </div>
 
 
