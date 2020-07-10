@@ -11,23 +11,23 @@ intro: "Conway's Game of Life written in Go and visualized using Ebiten. This ga
 
 # Intention
 
-One of the things I set out to do during this quarantine was to learn Go. I was super interested by Go's design decision to bake concurrency directly into the core language and the ability to achieve super efficient concurrency coupled with high performance simultaneously. There has also been a lot of hype online for Go recently, and I wanted to learn something new. I also saw it as a welcome return to pointers and procedural programming after having worked with Ruby and Python professionally for a while now.
+One of the things I set out to do during this quarantine was to learn Go. I was super interested in Go's design decision to bake concurrency directly into the core language and the ability to achieve super-efficient concurrency coupled with high performance simultaneously. There has also been a lot of hype online for Go recently, and I wanted to learn something new. I also saw it as a welcome return to pointers and procedural programming after having worked with Ruby and Python professionally for a while now.
 
-To get started, I completed Golang's [A Tour of Go](https://tour.golang.org/) (check out my solutions to the exercises [here](https://github.com/mefchristiansen/Tour-of-Go-Solutions)). I really enjoyed learning a new language, and was really surprised by just how simple Go makes concurrency immediately available to you through goroutines and channels.
+To get started, I completed Golang's [A Tour of Go](https://tour.golang.org/) (check out my solutions to the exercises [here](https://github.com/mefchristiansen/Tour-of-Go-Solutions)). I really enjoyed learning a new language and was really surprised by just how simple Go makes concurrency immediately available to you through goroutines and channels.
 
 ## Conway's Game of Life
 
 In an effort to practice more and build my first Go program, I decided to implement [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
 I choose Conway's Game of Life since its a classic computer science project that I haven't yet implemented, and I saw this as a good opportunity to do so.
 
-The Game of Life is a cellular automaton zero-player game. It takes place on a 2D grid of cells, where each cell can either be alive or dead. At each iteration, the state of a cell is determined by a set of rules which take into account the state of a cell's neighbors (the cells horizontally, vertically and diagonally adjacent). Following an initial configuration of alive and dead cells, the rules are iteratively applied and thus patterns automatically evolve over time on the grid. 
+The Game of Life is a cellular automaton zero-player game. It takes place on a 2D grid of cells, where each cell can either be alive or dead. At each iteration, the state of a cell is determined by a set of rules which take into account the state of a cell's neighbors (the cells horizontally, vertically, and diagonally adjacent). Following an initial configuration of alive and dead cells, the rules are iteratively applied, and thus patterns automatically evolve over time on the grid. 
 
 The rules that determine the next iteration of cells are as follows:
 
-1. Any live cell with fewer than two live neighbours dies, as if by underpopulation.
-2. Any live cell with two or three live neighbours lives on to the next generation.
-3. Any live cell with more than three live neighbours dies, as if by overpopulation.
-4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+1. Any live cell with fewer than two live neighbors dies, as if by underpopulation.
+2. Any live cell with two or three live neighbors lives on to the next generation.
+3. Any live cell with more than three live neighbors dies, as if by overpopulation.
+4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
 
 These rules can be simplified to the following three (in code):
 
@@ -57,7 +57,7 @@ I implemented Ebiten's `Game` interface to develop this program, which comes wit
 
 ## Initial State
 
-Although the Game of Life is a zero-player game and the patterns will generate themselves, the game does require an initial state of alive cells (as no living cells in the initial state will lead to no patterns). In order to do this, I randomly set the state of each cell during the initialization of the board. Here I use the `rand` Go package, and seed it with the current Unix time to ensure a different initial state at each run. The probability of a cell being alive in the initial state is variable to allow for different initial alive/dead ratios at the user's discretion.
+Although the Game of Life is a zero-player game and the patterns will generate themselves, the game does require an initial state of alive cells (as no living cells in the initial state will lead to no patterns). In order to do this, I randomly set the state of each cell during the initialization of the board. Here I use the `rand` Go package and seed it with the current Unix time to ensure a different initial state at each run. The probability of a cell being alive in the initial state is variable to allow for different initial alive/dead ratios at the user's discretion.
 
 This board initialization can be seen below:
 
@@ -88,7 +88,7 @@ func initBoard(dimension int, initialStateProbability float32) [][]Cell {
 
 ## Interaction
 
-I also enabled the user to be able to interact with the board by being able to set the state of a cell and its neighboring cells to alive when left clicking the cell. This allows for some really interesting results. This works by listening for a user click (by using the Ebiten API) and switching the state of the correponding cell and its neighbors (the cells horizontally, vertically and diagonally adjacent) to being alive.
+I also enabled the user to be able to interact with the board by being able to set the state of a cell and its neighboring cells to alive when left-clicking the cell. This allows for some really interesting results. This works by listening for a user click (by using the Ebiten API) and switching the state of the corresponding cell and its neighbors (the cells horizontally, vertically, and diagonally adjacent) to being alive.
 
 {% include image.html url="/_images/cgol-interaction.gif" description="Setting cells to alive on a left mouse click" width="400px" height="400px" %}
 

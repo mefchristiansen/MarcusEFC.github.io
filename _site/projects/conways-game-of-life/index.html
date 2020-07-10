@@ -158,24 +158,24 @@
 
 <h1 id="intention">Intention</h1>
 
-<p>One of the things I set out to do during this quarantine was to learn Go. I was super interested by Go’s design decision to bake concurrency directly into the core language and the ability to achieve super efficient concurrency coupled with high performance simultaneously. There has also been a lot of hype online for Go recently, and I wanted to learn something new. I also saw it as a welcome return to pointers and procedural programming after having worked with Ruby and Python professionally for a while now.</p>
+<p>One of the things I set out to do during this quarantine was to learn Go. I was super interested in Go’s design decision to bake concurrency directly into the core language and the ability to achieve super-efficient concurrency coupled with high performance simultaneously. There has also been a lot of hype online for Go recently, and I wanted to learn something new. I also saw it as a welcome return to pointers and procedural programming after having worked with Ruby and Python professionally for a while now.</p>
 
-<p>To get started, I completed Golang’s <a href="https://tour.golang.org/">A Tour of Go</a> (check out my solutions to the exercises <a href="https://github.com/mefchristiansen/Tour-of-Go-Solutions">here</a>). I really enjoyed learning a new language, and was really surprised by just how simple Go makes concurrency immediately available to you through goroutines and channels.</p>
+<p>To get started, I completed Golang’s <a href="https://tour.golang.org/">A Tour of Go</a> (check out my solutions to the exercises <a href="https://github.com/mefchristiansen/Tour-of-Go-Solutions">here</a>). I really enjoyed learning a new language and was really surprised by just how simple Go makes concurrency immediately available to you through goroutines and channels.</p>
 
 <h2 id="conways-game-of-life">Conway’s Game of Life</h2>
 
 <p>In an effort to practice more and build my first Go program, I decided to implement <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway’s Game of Life</a>.
 I choose Conway’s Game of Life since its a classic computer science project that I haven’t yet implemented, and I saw this as a good opportunity to do so.</p>
 
-<p>The Game of Life is a cellular automaton zero-player game. It takes place on a 2D grid of cells, where each cell can either be alive or dead. At each iteration, the state of a cell is determined by a set of rules which take into account the state of a cell’s neighbors (the cells horizontally, vertically and diagonally adjacent). Following an initial configuration of alive and dead cells, the rules are iteratively applied and thus patterns automatically evolve over time on the grid.</p>
+<p>The Game of Life is a cellular automaton zero-player game. It takes place on a 2D grid of cells, where each cell can either be alive or dead. At each iteration, the state of a cell is determined by a set of rules which take into account the state of a cell’s neighbors (the cells horizontally, vertically, and diagonally adjacent). Following an initial configuration of alive and dead cells, the rules are iteratively applied, and thus patterns automatically evolve over time on the grid.</p>
 
 <p>The rules that determine the next iteration of cells are as follows:</p>
 
 <ol>
-  <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</li>
-  <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
-  <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
-  <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+  <li>Any live cell with fewer than two live neighbors dies, as if by underpopulation.</li>
+  <li>Any live cell with two or three live neighbors lives on to the next generation.</li>
+  <li>Any live cell with more than three live neighbors dies, as if by overpopulation.</li>
+  <li>Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.</li>
 </ol>
 
 <p>These rules can be simplified to the following three (in code):</p>
@@ -204,7 +204,7 @@ I choose Conway’s Game of Life since its a classic computer science project th
 
 <h2 id="initial-state">Initial State</h2>
 
-<p>Although the Game of Life is a zero-player game and the patterns will generate themselves, the game does require an initial state of alive cells (as no living cells in the initial state will lead to no patterns). In order to do this, I randomly set the state of each cell during the initialization of the board. Here I use the <code class="language-plaintext highlighter-rouge">rand</code> Go package, and seed it with the current Unix time to ensure a different initial state at each run. The probability of a cell being alive in the initial state is variable to allow for different initial alive/dead ratios at the user’s discretion.</p>
+<p>Although the Game of Life is a zero-player game and the patterns will generate themselves, the game does require an initial state of alive cells (as no living cells in the initial state will lead to no patterns). In order to do this, I randomly set the state of each cell during the initialization of the board. Here I use the <code class="language-plaintext highlighter-rouge">rand</code> Go package and seed it with the current Unix time to ensure a different initial state at each run. The probability of a cell being alive in the initial state is variable to allow for different initial alive/dead ratios at the user’s discretion.</p>
 
 <p>This board initialization can be seen below:</p>
 
@@ -231,7 +231,7 @@ I choose Conway’s Game of Life since its a classic computer science project th
 
 <h2 id="interaction">Interaction</h2>
 
-<p>I also enabled the user to be able to interact with the board by being able to set the state of a cell and its neighboring cells to alive when left clicking the cell. This allows for some really interesting results. This works by listening for a user click (by using the Ebiten API) and switching the state of the correponding cell and its neighbors (the cells horizontally, vertically and diagonally adjacent) to being alive.</p>
+<p>I also enabled the user to be able to interact with the board by being able to set the state of a cell and its neighboring cells to alive when left-clicking the cell. This allows for some really interesting results. This works by listening for a user click (by using the Ebiten API) and switching the state of the corresponding cell and its neighbors (the cells horizontally, vertically, and diagonally adjacent) to being alive.</p>
 
 <figure class="image">
     <img src="/_images/cgol-interaction.gif" alt="Setting cells to alive on a left mouse click" style="max-width: 400px; max-height: 400px;" />
