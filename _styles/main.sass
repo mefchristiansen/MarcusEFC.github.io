@@ -25,6 +25,19 @@ h1
 p, ul, ol
   line-height: 1.75em !important
 
+p
+  a
+    color: $link-color
+    background-image: linear-gradient(transparent calc(100% - 2px),$link-color 1px)
+    text-decoration: none
+    background-size: 100% 100%
+    background-position: 100%
+    position: relative
+    background-repeat: no-repeat
+    transition: all .2s
+    &:hover
+      background-size: 0 100%
+
 a:link
   color: $link-color
 
